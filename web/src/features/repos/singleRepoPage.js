@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 import { selectRepoById } from './reposSlice';
 
 export default function SinglePostPage({ match }) {
@@ -25,6 +25,8 @@ export default function SinglePostPage({ match }) {
         <a href={readmeURL} target="_blank" rel="noreferrer">
           README
         </a>
+        <br />
+        <Link to="/repos">Back</Link>
       </article>
     </section>
   );

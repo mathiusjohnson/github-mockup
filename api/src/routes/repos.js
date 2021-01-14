@@ -23,19 +23,30 @@ const request = https.request(options, function(response){
   });
 
   response.on("end", function(){
-      console.log("Body: ", body);
+      // console.log("Body: ", body);
       });
   });
 
   request.end();
 
-console.log(typeof body);
+// console.log(typeof body);
 // body = body.filter(repo => repo.fork === true)
+
 
 // console.log(body);
 repos.get('/', async (req, res) => {
   res.header('Cache-Control', 'no-store');
-
+  let data = JSON.parse(body)
+  console.log(data.length);
+  data = data.filter(repo => repo.fork === true)
+  console.log(data.length);
+  // console.log(typeof JSON.parse(body));
+  // for (const repo of body) {
+  //   console.log(repo);
+  //   // if (repo.fork !== false) {
+  //   //   console.log("true");
+  //   // }
+  // }
   // console.log(yourJson);
 
   // TODO: See README.md Task (A). Return repo data here. You’ve got this!

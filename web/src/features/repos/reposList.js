@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 import { fetchRepos, selectRepoIds, selectRepoById } from './reposSlice';
 
 function RepoExcerpt({ repoId, languageToFilter }) {
@@ -25,6 +25,9 @@ function RepoExcerpt({ repoId, languageToFilter }) {
         )}
         <p>Forks: {repo.forks_count}</p>
         <p>{repo.created_at}</p>
+        <Link to={`/repos/${repo.id}`} className="button muted-button">
+          View Repo
+        </Link>
       </article>
     );
   } else {
@@ -45,6 +48,9 @@ function RepoExcerpt({ repoId, languageToFilter }) {
         )}
         <p>Forks: {repo.forks_count}</p>
         <p>{repo.created_at}</p>
+        <Link to={`/repos/${repo.id}`} className="button muted-button">
+          View Repo
+        </Link>
       </article>
     );
   }

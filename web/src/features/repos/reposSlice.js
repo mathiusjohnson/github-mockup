@@ -6,7 +6,7 @@ import {
 } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const url = 'http://localhost:4000/repos';
+const url = 'https://api.github.com/users/silverorange/repos';
 
 const reposAdapter = createEntityAdapter({
   sortComparer: (a, b) => b.created_at.localeCompare(a.created_at),
@@ -19,6 +19,7 @@ const initialState = reposAdapter.getInitialState({
 
 export const fetchRepos = createAsyncThunk('repos/fetchRepos', async () => {
   const response = await axios.get(url);
+  // console.log(response.data);
   return response.data;
 });
 

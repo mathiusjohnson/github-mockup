@@ -1,22 +1,27 @@
 import { connect } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit';
-import { toggleTodo } from 'features/todos/todosSlice';
-import TodoList from './TodoList';
-import { VisibilityFilters } from 'features/filters/filtersSlice';
+import { toggleTodo } from '../repos/reposSlice';
+import ReposList from './reposList';
+import { selectAllRepos } from './reposSlice';
 
-const selectRepos = (state) => state.repos;
+import { VisibilityFilters } from '../filters/filtersSlice';
+
 const selectFilter = (state) => state.visibilityFilter;
 
+// console.log('repos: ', selectAllRepos);
 const selectVisibleRepos = createSelector(
-  [selectRepos, selectFilter],
+  [selectAllRepos, selectFilter],
   (repos, filter) => {
+    console.log('repos: ', repos);
     switch (filter) {
       case VisibilityFilters.SHOW_ALL:
         return repos;
-      case VisibilityFilters.SHOW_COMPLETED:
-        return repos.filter((t) => t.completed);
-      case VisibilityFilters.SHOW_ACTIVE:
-        return repos.filter((t) => !t.completed);
+      case VisibilityFilters.Javascript:
+        return repos.filter((t) => t.language === 'Javascript');
+      case VisibilityFilters.Typescript:
+        return repos.filter((t) => t.language === 'Typescript');
+      case VisibilityFilters.CSS:
+        return repos.filter((t) => !t.language === 'CSS');
       default:
         throw new Error('Unknown filter: ' + filter);
     }
@@ -29,4 +34,4 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = { toggleTodo };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+export default connect(mapStateToProps, mapDispatchToProps)(ReposList);

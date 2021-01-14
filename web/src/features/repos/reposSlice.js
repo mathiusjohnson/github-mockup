@@ -26,7 +26,14 @@ export const fetchRepos = createAsyncThunk('repos/fetchRepos', async () => {
 const reposSlice = createSlice({
   name: 'repos',
   initialState,
-  reducers: {},
+  reducers: {
+    toggleTodo(state, action) {
+      const todo = state.find((todoitem) => todoitem.id === action.payload);
+      if (todo) {
+        todo.completed = !todo.completed;
+      }
+    },
+  },
   extraReducers: {
     [fetchRepos.pending]: (state, action) => {
       state.status = 'loading';
@@ -43,7 +50,7 @@ const reposSlice = createSlice({
   },
 });
 
-// export const { postAdded, postUpdated, reactionAdded } = reposSlice.actions;
+export const { toggleTodo } = reposSlice.actions;
 
 export default reposSlice.reducer;
 

@@ -8,10 +8,14 @@ import {
 
 import ReposList from './features/repos/reposList';
 import SingleRepoPage from './features/repos/singleRepoPage';
+import VisibleRepoList from './features/repos/visibleReposList';
+import Footer from './features/filters/Footer';
+
 function App() {
   return (
     <Router>
       <div className="App">
+        <VisibleRepoList />
         <Switch>
           <Route
             exact={true}
@@ -29,6 +33,7 @@ function App() {
           />
           <Redirect to="/" />
         </Switch>
+        <Footer />
       </div>
     </Router>
   );

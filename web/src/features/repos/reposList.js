@@ -6,7 +6,9 @@ import { fetchRepos, selectRepoIds, selectRepoById } from './reposSlice';
 function RepoExcerpt({ repoId, languageToFilter }) {
   const repo = useSelector((state) => selectRepoById(state, repoId));
 
+  console.log(languageToFilter);
   if (languageToFilter !== undefined && repo.language === languageToFilter) {
+    console.log('this works!');
     return (
       <article key={repo.id}>
         <h3>Name: {repo.name}</h3>
@@ -71,11 +73,22 @@ export default function ReposList() {
   }
 
   let content;
-  // let buttonClicked = false;
-  // let languageToFilter;
+  let buttonClicked = false;
+  let languageToFilter;
 
+  const filterLanguages = (language) => {
+    buttonClicked = true;
+    languageToFilter = language;
+    console.log(buttonClicked, languageToFilter);
+  };
+
+  console.log(buttonClicked, languageToFilter);
   const buttons = languages.map((language, index) => {
-    return <button key={index}>{language}</button>;
+    return (
+      <button onClick={() => filterLanguages(language)} key={index}>
+        {language}
+      </button>
+    );
   });
 
   const repoStatus = useSelector((state) => state.repos.status);
@@ -90,15 +103,15 @@ export default function ReposList() {
   if (repoStatus === 'loading') {
     content = <div className="loader">Loading...</div>;
   } else if (repoStatus === 'succeeded') {
-    // if (buttonClicked === true) {
-    //   content = orderedrepoIds.map((repoId) => (
-    //     <RepoExcerpt key={repoId} repoId={repoId} language={languageToFilter} />
-    //   ));
-    // } else {
-    content = orderedrepoIds.map((repoId) => (
-      <RepoExcerpt key={repoId} repoId={repoId} />
-    ));
-    // }
+    if (buttonClicked === true) {
+      content = orderedrepoIds.map((repoId) => (
+        <RepoExcerpt key={repoId} repoId={repoId} language={languageToFilter} />
+      ));
+    } else {
+      content = orderedrepoIds.map((repoId) => (
+        <RepoExcerpt key={repoId} repoId={repoId} />
+      ));
+    }
   } else if (repoStatus === 'error') {
     content = <div>{error}</div>;
   }

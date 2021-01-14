@@ -6,56 +6,54 @@ import { fetchRepos, selectRepoIds, selectRepoById } from './reposSlice';
 function RepoExcerpt({ repoId, languageToFilter }) {
   const repo = useSelector((state) => selectRepoById(state, repoId));
 
-  console.log(languageToFilter);
-  if (languageToFilter !== undefined && repo.language === languageToFilter) {
-    console.log('this works!');
-    return (
-      <article key={repo.id}>
-        <h3>Name: {repo.name}</h3>
-        {repo.description !== null ? (
-          <p className="repo-content">
-            Description: {repo.description.substring(0, 100)}
-          </p>
-        ) : (
-          <p>no description</p>
-        )}
-        {repo.language !== undefined ? (
-          <p>Language:{repo.language}</p>
-        ) : (
-          <p>No languages</p>
-        )}
-        <p>Forks: {repo.forks_count}</p>
-        <p>{repo.created_at}</p>
-        <Link to={`/repos/${repo.id}`} className="button muted-button">
-          View Repo
-        </Link>
-      </article>
-    );
-  } else {
-    return (
-      <article key={repo.id}>
-        <h3>Name: {repo.name}</h3>
-        {repo.description !== null ? (
-          <p className="repo-content">
-            Description: {repo.description.substring(0, 100)}
-          </p>
-        ) : (
-          <p>no description</p>
-        )}
-        {repo.language !== undefined ? (
-          <p>Language:{repo.language}</p>
-        ) : (
-          <p>No languages</p>
-        )}
-        <p>Forks: {repo.forks_count}</p>
-        <p>{repo.created_at}</p>
-        <Link to={`/repos/${repo.id}`} className="button muted-button">
-          View Repo
-        </Link>
-      </article>
-    );
-  }
+  // if (languageToFilter !== undefined && repo.language === languageToFilter) {
+  //   return (
+  //     <article key={repo.id}>
+  //       <h3>Name: {repo.name}</h3>
+  //       {repo.description !== null ? (
+  //         <p className="repo-content">
+  //           Description: {repo.description.substring(0, 100)}
+  //         </p>
+  //       ) : (
+  //         <p>no description</p>
+  //       )}
+  //       {repo.language !== undefined ? (
+  //         <p>Language:{repo.language}</p>
+  //       ) : (
+  //         <p>No languages</p>
+  //       )}
+  //       <p>Forks: {repo.forks_count}</p>
+  //       <p>{repo.created_at}</p>
+  //       <Link to={`/repos/${repo.id}`} className="button muted-button">
+  //         View Repo
+  //       </Link>
+  //     </article>
+  //   );
+  // } else {
+  return (
+    <article key={repo.id}>
+      <h3>Name: {repo.name}</h3>
+      {repo.description !== null ? (
+        <p className="repo-content">
+          Description: {repo.description.substring(0, 100)}
+        </p>
+      ) : (
+        <p>no description</p>
+      )}
+      {repo.language !== undefined ? (
+        <p>Language:{repo.language}</p>
+      ) : (
+        <p>No languages</p>
+      )}
+      <p>Forks: {repo.forks_count}</p>
+      <p>{repo.created_at}</p>
+      <Link to={`/repos/${repo.id}`} className="button muted-button">
+        View Repo
+      </Link>
+    </article>
+  );
 }
+// }
 export default function ReposList() {
   const dispatch = useDispatch();
   const orderedrepoIds = useSelector(selectRepoIds);
@@ -82,7 +80,6 @@ export default function ReposList() {
     console.log(buttonClicked, languageToFilter);
   };
 
-  console.log(buttonClicked, languageToFilter);
   const buttons = languages.map((language, index) => {
     return (
       <button onClick={() => filterLanguages(language)} key={index}>
@@ -104,6 +101,7 @@ export default function ReposList() {
     content = <div className="loader">Loading...</div>;
   } else if (repoStatus === 'succeeded') {
     if (buttonClicked === true) {
+      console.log('this works');
       content = orderedrepoIds.map((repoId) => (
         <RepoExcerpt key={repoId} repoId={repoId} language={languageToFilter} />
       ));

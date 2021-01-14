@@ -10,12 +10,21 @@ const RepoExcerpt = ({ repoId }) => {
   console.log(repo);
   return (
     <article key={repo.id}>
-      <h3>{repo.name}</h3>
+      <h3>Name:{repo.name}</h3>
       {repo.description !== null ? (
-        <p className="repo-content">{repo.description.substring(0, 100)}</p>
+        <p className="repo-content">
+          Description: {repo.description.substring(0, 100)}
+        </p>
       ) : (
-        ''
+        <p>no description</p>
       )}
+      {repo.language !== undefined ? (
+        <p>Language:{repo.language}</p>
+      ) : (
+        <p>No languages</p>
+      )}
+      <p>Forks: {repo.forks_count}</p>
+      <p>{repo.created_at}</p>
     </article>
   );
 };
@@ -47,7 +56,7 @@ export default function ReposList() {
 
   return (
     <section className="repos-list">
-      <h2>repos</h2>
+      <h2>Repos</h2>
       {content}
     </section>
   );

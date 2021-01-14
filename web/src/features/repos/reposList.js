@@ -4,45 +4,51 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchRepos, selectRepoIds, selectRepoById } from './reposSlice';
 
-function RepoExcerpt({ repoId }) {
-  // const [languages, setLanguages] = useState('');
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+function RepoExcerpt({ repoId, languageToFilter }) {
   const repo = useSelector((state) => selectRepoById(state, repoId));
-  // if (!languages.includes(repo.language)) {
-  //   setLanguages(languages.push(repo.language));
-  // }
-  // console.log(languages);
 
-  return (
-    <article key={repo.id}>
-      <h3>Name: {repo.name}</h3>
-      {repo.description !== null ? (
-        <p className="repo-content">
-          Description: {repo.description.substring(0, 100)}
-        </p>
-      ) : (
-        <p>no description</p>
-      )}
-      {repo.language !== undefined ? (
-        <p>Language:{repo.language}</p>
-      ) : (
-        <p>No languages</p>
-      )}
-      <p>Forks: {repo.forks_count}</p>
-      <p>{repo.created_at}</p>
-    </article>
-  );
+  if (languageToFilter !== undefined && repo.language === languageToFilter) {
+    return (
+      <article key={repo.id}>
+        <h3>Name: {repo.name}</h3>
+        {repo.description !== null ? (
+          <p className="repo-content">
+            Description: {repo.description.substring(0, 100)}
+          </p>
+        ) : (
+          <p>no description</p>
+        )}
+        {repo.language !== undefined ? (
+          <p>Language:{repo.language}</p>
+        ) : (
+          <p>No languages</p>
+        )}
+        <p>Forks: {repo.forks_count}</p>
+        <p>{repo.created_at}</p>
+      </article>
+    );
+  } else {
+    return (
+      <article key={repo.id}>
+        <h3>Name: {repo.name}</h3>
+        {repo.description !== null ? (
+          <p className="repo-content">
+            Description: {repo.description.substring(0, 100)}
+          </p>
+        ) : (
+          <p>no description</p>
+        )}
+        {repo.language !== undefined ? (
+          <p>Language:{repo.language}</p>
+        ) : (
+          <p>No languages</p>
+        )}
+        <p>Forks: {repo.forks_count}</p>
+        <p>{repo.created_at}</p>
+      </article>
+    );
+  }
 }
-
-// for (const language in languageObject) {
-//   if (Object.hasOwnProperty.call(languageObject, language)) {
-//     const element = languageObject[language];
-//     console.log(element);
-//   }
-// }
-// console.log(languageObject['CSS]);
-// const languages = Object.keys(languageObject);
-
 export default function ReposList() {
   const dispatch = useDispatch();
   const orderedrepoIds = useSelector(selectRepoIds);
@@ -59,10 +65,21 @@ export default function ReposList() {
     }
   }
 
-  console.log(languages);
+  let content;
+  let buttonClicked = false;
+  let languageToFilter;
+
+  const filterLanguage = (language) => {
+    buttonClicked = true;
+    languageToFilter = language;
+  };
 
   const buttons = languages.map((language, index) => {
-    return <button key={index}>{language}</button>;
+    return (
+      <button onClick={filterLanguage(language)} key={index}>
+        {language}
+      </button>
+    );
   });
 
   const repoStatus = useSelector((state) => state.repos.status);
@@ -74,14 +91,18 @@ export default function ReposList() {
     }
   }, [repoStatus, dispatch]);
 
-  let content;
-
   if (repoStatus === 'loading') {
     content = <div className="loader">Loading...</div>;
   } else if (repoStatus === 'succeeded') {
-    content = orderedrepoIds.map((repoId) => (
-      <RepoExcerpt key={repoId} repoId={repoId} />
-    ));
+    if (buttonClicked === true) {
+      content = orderedrepoIds.map((repoId) => (
+        <RepoExcerpt key={repoId} repoId={repoId} language={languageToFilter} />
+      ));
+    } else {
+      content = orderedrepoIds.map((repoId) => (
+        <RepoExcerpt key={repoId} repoId={repoId} />
+      ));
+    }
   } else if (repoStatus === 'error') {
     content = <div>{error}</div>;
   }

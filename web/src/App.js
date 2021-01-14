@@ -24,7 +24,7 @@ function App() {
           />
           <Route
             exact={true}
-            path="/posts/:postId"
+            path="/repos/:repoId"
             component={SingleRepoPage}
           />
           <Redirect to="/" />

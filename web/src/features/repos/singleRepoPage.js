@@ -8,6 +8,7 @@ export default function SinglePostPage({ match }) {
 
   const repo = useSelector((state) => selectRepoById(state, repoId));
 
+  const readmeURL = `https://raw.githubusercontent.com/${repo.full_name}/master/README.md`;
   if (!repo) {
     return (
       <section>
@@ -20,8 +21,10 @@ export default function SinglePostPage({ match }) {
     <section>
       <article className="post">
         <h2>{repo.title}</h2>
-
-        <p className="post-content">{repo.content}</p>
+        <p>Updated at: {repo.updated_at}</p>
+        <a href={readmeURL} target="_blank" rel="noreferrer">
+          README
+        </a>
       </article>
     </section>
   );

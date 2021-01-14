@@ -4,17 +4,18 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchRepos, selectRepoIds, selectRepoById } from './reposSlice';
 
-const languageArray = [];
-
-const RepoExcerpt = ({ repoId }) => {
+function RepoExcerpt({ repoId }) {
+  // const [languages, setLanguages] = useState('');
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const repo = useSelector((state) => selectRepoById(state, repoId));
-  if (!languageArray.includes(repo.language)) {
-    languageArray.push(repo.language);
-  }
+  // if (!languages.includes(repo.language)) {
+  //   setLanguages(languages.push(repo.language));
+  // }
+  // console.log(languages);
+
   return (
     <article key={repo.id}>
-      <h3>Name:{repo.name}</h3>
+      <h3>Name: {repo.name}</h3>
       {repo.description !== null ? (
         <p className="repo-content">
           Description: {repo.description.substring(0, 100)}
@@ -31,19 +32,23 @@ const RepoExcerpt = ({ repoId }) => {
       <p>{repo.created_at}</p>
     </article>
   );
-};
+}
 
-const buttons =
-  languageArray.length > 1
-    ? languageArray.forEach((language) => {
-        return <button>{language}</button>;
-      })
-    : '';
+// for (const language in languageObject) {
+//   if (Object.hasOwnProperty.call(languageObject, language)) {
+//     const element = languageObject[language];
+//     console.log(element);
+//   }
+// }
+// console.log(languageObject['CSS]);
+// const languages = Object.keys(languageObject);
 
 export default function ReposList() {
   const dispatch = useDispatch();
   const orderedrepoIds = useSelector(selectRepoIds);
 
+  const languages = useSelector((state) => state.repos.entities);
+  console.log('languages: ', languages);
   const repoStatus = useSelector((state) => state.repos.status);
   const error = useSelector((state) => state.repos.error);
 
@@ -68,7 +73,7 @@ export default function ReposList() {
   return (
     <section className="repos-list">
       <h2>Repos</h2>
-      {buttons}
+      {/* {buttons()} */}
       {content}
     </section>
   );

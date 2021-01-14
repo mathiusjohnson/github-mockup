@@ -1,43 +1,41 @@
 import { Router, Request, Response } from 'express';
 import yourJson from '../../data/repos.json';
 import https from 'https';
+
 export const repos = Router();
 
 const url = 'https://api.github.com/users/silverorange/repos';
 
 const username = 'silverorange';
 const options = {
-  hostname: 'https://api.github.com/',
-  path: 'users/' + username + '/repos',
+  hostname: 'api.github.com',
+  path: '/users/' + username + '/repos',
   method: 'GET',
   headers: {'user-agent': 'node.js'}
 
 };
 
-const request = https.request(options, function(response){
-  let body = "";
+let body = "";
 
-  res.on("data", (chunk) => {
+const request = https.request(options, function(response){
+  response.on("data", function(chunk){
       body += chunk;
   });
 
-  res.on("end", () => {
-      try {
-        console.log();
-          // do something with JSON
-      } catch (error) {
-          console.error(error.message);
-      };
+  response.on("end", function(){
+      console.log("Body: ", body);
+      });
   });
 
-}).on("error", (error) => {
-  console.error(error.message);
-});
+  request.end();
 
-repos.get('/', async (res) => {
+console.log(typeof body);
+// body = body.filter(repo => repo.fork === true)
+
+// console.log(body);
+repos.get('/', async (req, res) => {
   res.header('Cache-Control', 'no-store');
 
-  res.status(200);
   // console.log(yourJson);
 
   // TODO: See README.md Task (A). Return repo data here. You’ve got this!

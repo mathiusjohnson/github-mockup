@@ -60,8 +60,11 @@ export default function ReposList() {
   }
 
   console.log(languages);
-  // const languages = entities.foreach((entity) => entity.language);
-  // console.log(languages);
+
+  const buttons = languages.map((language, index) => {
+    return <button key={index}>{language}</button>;
+  });
+
   const repoStatus = useSelector((state) => state.repos.status);
   const error = useSelector((state) => state.repos.error);
 
@@ -86,7 +89,7 @@ export default function ReposList() {
   return (
     <section className="repos-list">
       <h2>Repos</h2>
-      {/* {buttons()} */}
+      <ul>{buttons}</ul>
       {content}
     </section>
   );

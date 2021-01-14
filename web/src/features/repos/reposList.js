@@ -7,7 +7,6 @@ function RepoExcerpt({ repoId, languageToFilter }) {
   const repo = useSelector((state) => selectRepoById(state, repoId));
 
   if (languageToFilter !== undefined && repo.language === languageToFilter) {
-    console.log('button clicked down the line');
     return (
       <article key={repo.id}>
         <h3>Name: {repo.name}</h3>
@@ -75,18 +74,8 @@ export default function ReposList() {
   // let buttonClicked = false;
   // let languageToFilter;
 
-  const filterLanguage = (language) => {
-    console.log('button clicked!');
-    // buttonClicked = true;
-    // languageToFilter = language;
-  };
-
   const buttons = languages.map((language, index) => {
-    return (
-      <button onClick={filterLanguage} key={index}>
-        {language}
-      </button>
-    );
+    return <button key={index}>{language}</button>;
   });
 
   const repoStatus = useSelector((state) => state.repos.status);

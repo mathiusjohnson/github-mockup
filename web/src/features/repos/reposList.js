@@ -33,7 +33,13 @@ const RepoExcerpt = ({ repoId }) => {
   );
 };
 
-console.log(languageArray);
+const buttons =
+  languageArray.length > 1
+    ? languageArray.forEach((language) => {
+        return <button>{language}</button>;
+      })
+    : '';
+
 export default function ReposList() {
   const dispatch = useDispatch();
   const orderedrepoIds = useSelector(selectRepoIds);
@@ -62,6 +68,7 @@ export default function ReposList() {
   return (
     <section className="repos-list">
       <h2>Repos</h2>
+      {buttons}
       {content}
     </section>
   );

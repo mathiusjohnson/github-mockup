@@ -1,18 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 
-import { selectPostById } from './postsSlice';
+import { selectRepoById } from './reposSlice';
 
-export const SinglePostPage = ({ match }) => {
-  const { postId } = match.params;
+export default function SinglePostPage({ match }) {
+  const { repoId } = match.params;
 
-  const post = useSelector((state) => selectPostById(state, postId));
+  const repo = useSelector((state) => selectRepoById(state, repoId));
 
-  if (!post) {
+  if (!repo) {
     return (
       <section>
-        <h2>Post not found!</h2>
+        <h2>Repo not found!</h2>
       </section>
     );
   }
@@ -20,13 +19,10 @@ export const SinglePostPage = ({ match }) => {
   return (
     <section>
       <article className="post">
-        <h2>{post.title}</h2>
+        <h2>{repo.title}</h2>
 
-        <p className="post-content">{post.content}</p>
-        <Link to={`/editPost/${post.id}`} className="button">
-          Edit Post
-        </Link>
+        <p className="post-content">{repo.content}</p>
       </article>
     </section>
   );
-};
+}

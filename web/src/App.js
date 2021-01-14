@@ -1,7 +1,37 @@
 import React from 'react';
-import ReposList from './features/repos/reposList';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 
-export default function App() {
-  return <ReposList />;
+import ReposList from './features/repos/reposList';
+import SingleRepoPage from './features/repos/singleRepoPage';
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route
+            exact={true}
+            path="/"
+            render={() => (
+              <React.Fragment>
+                <ReposList />
+              </React.Fragment>
+            )}
+          />
+          <Route
+            exact={true}
+            path="/posts/:postId"
+            component={SingleRepoPage}
+          />
+          <Redirect to="/" />
+        </Switch>
+      </div>
+    </Router>
+  );
 }
+
+export default App;

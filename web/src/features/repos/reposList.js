@@ -72,17 +72,18 @@ export default function ReposList() {
   }
 
   let content;
-  let buttonClicked = false;
-  let languageToFilter;
+  // let buttonClicked = false;
+  // let languageToFilter;
 
   const filterLanguage = (language) => {
-    buttonClicked = true;
-    languageToFilter = language;
+    console.log('button clicked!');
+    // buttonClicked = true;
+    // languageToFilter = language;
   };
 
   const buttons = languages.map((language, index) => {
     return (
-      <button onClick={filterLanguage(language)} key={index}>
+      <button onClick={filterLanguage} key={index}>
         {language}
       </button>
     );
@@ -100,15 +101,15 @@ export default function ReposList() {
   if (repoStatus === 'loading') {
     content = <div className="loader">Loading...</div>;
   } else if (repoStatus === 'succeeded') {
-    if (buttonClicked === true) {
-      content = orderedrepoIds.map((repoId) => (
-        <RepoExcerpt key={repoId} repoId={repoId} language={languageToFilter} />
-      ));
-    } else {
-      content = orderedrepoIds.map((repoId) => (
-        <RepoExcerpt key={repoId} repoId={repoId} />
-      ));
-    }
+    // if (buttonClicked === true) {
+    //   content = orderedrepoIds.map((repoId) => (
+    //     <RepoExcerpt key={repoId} repoId={repoId} language={languageToFilter} />
+    //   ));
+    // } else {
+    content = orderedrepoIds.map((repoId) => (
+      <RepoExcerpt key={repoId} repoId={repoId} />
+    ));
+    // }
   } else if (repoStatus === 'error') {
     content = <div>{error}</div>;
   }

@@ -47,8 +47,21 @@ export default function ReposList() {
   const dispatch = useDispatch();
   const orderedrepoIds = useSelector(selectRepoIds);
 
-  const languages = useSelector((state) => state.repos.entities);
-  console.log('languages: ', languages);
+  const entities = useSelector((state) => state.repos.entities);
+
+  const languages = [];
+  for (const entity in entities) {
+    if (Object.hasOwnProperty.call(entities, entity)) {
+      const element = entities[entity];
+      if (!languages.includes(element.language)) {
+        languages.push(element.language);
+      }
+    }
+  }
+
+  console.log(languages);
+  // const languages = entities.foreach((entity) => entity.language);
+  // console.log(languages);
   const repoStatus = useSelector((state) => state.repos.status);
   const error = useSelector((state) => state.repos.error);
 

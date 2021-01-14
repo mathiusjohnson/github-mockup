@@ -4,10 +4,14 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchRepos, selectRepoIds, selectRepoById } from './reposSlice';
 
+const languageArray = [];
+
 const RepoExcerpt = ({ repoId }) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const repo = useSelector((state) => selectRepoById(state, repoId));
-  console.log(repo);
+  if (!languageArray.includes(repo.language)) {
+    languageArray.push(repo.language);
+  }
   return (
     <article key={repo.id}>
       <h3>Name:{repo.name}</h3>
@@ -29,6 +33,7 @@ const RepoExcerpt = ({ repoId }) => {
   );
 };
 
+console.log(languageArray);
 export default function ReposList() {
   const dispatch = useDispatch();
   const orderedrepoIds = useSelector(selectRepoIds);

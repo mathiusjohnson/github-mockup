@@ -4,7 +4,7 @@ import https from 'https';
 
 export const repos = Router();
 
-const username = 'silverorange';
+const username = 'mathiusjohnson';
 const options = {
   hostname: 'api.github.com',
   path: '/users/' + username + '/repos',
@@ -22,7 +22,8 @@ const request = https.request(options, function (response) {
 request.end();
 
 repos.get('/', async (req, res) => {
-  res.header('Cache-Control', 'no-store');
+  // res.header('Cache-Control', 'no-store');
+  console.log(typeof body);
   let data = JSON.parse(body);
   data = data.filter((repo) => repo.fork === false);
 

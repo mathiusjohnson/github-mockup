@@ -6,7 +6,7 @@ import {
 } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const url = 'https://api.github.com/users/silverorange/repos';
+const url = 'https://localhost:4000/repos';
 
 const reposAdapter = createEntityAdapter({
   sortComparer: (a, b) => b.created_at.localeCompare(a.created_at),

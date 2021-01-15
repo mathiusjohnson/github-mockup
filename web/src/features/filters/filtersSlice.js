@@ -11,12 +11,12 @@ const filtersSlice = createSlice({
   initialState: VisibilityFilters.SHOW_ALL,
   reducers: {
     setVisibilityFilter(state, action) {
-      console.log(action);
+      // console.log('action works in filters slice: ', action);
       return action.payload;
     },
   },
 });
 
-export const { setVisibilityFilter } = filtersSlice.action;
+export const setVisibilityFilter = filtersSlice.action;
 
 export default filtersSlice.reducer;

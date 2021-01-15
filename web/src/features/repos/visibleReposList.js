@@ -10,8 +10,8 @@ const selectVisibleRepos = createSelector(
   [selectRepos, selectFilter],
   (repos, filter) => {
     const repoKeys = Object.keys(repos.repos.entities);
-    const repoArr = []
-    repoKeys.forEach(key => {
+    const repoArr = [];
+    repoKeys.forEach((key) => {
       repoArr.push(repos.repos.entities[key]);
     });
     switch (filter) {

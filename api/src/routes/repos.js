@@ -42,7 +42,7 @@ repos.get('/', async (req, res) => {
    body = data;
   });
 
-  // console.log(typeof body);
+  console.log(body);
   // let data = JSON.parse(body);
 
   // console.log(typeof data);

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import rootReducer from './app/store';
+import rootReducer from './reducers';
 import { Provider } from 'react-redux';
 import { fetchRepos } from './features/repos/reposSlice';
 import { configureStore } from '@reduxjs/toolkit';

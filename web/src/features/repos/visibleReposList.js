@@ -2,21 +2,23 @@ import { connect } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit';
 import { toggleTodo } from '../repos/reposSlice';
 import ReposList from './reposList';
-import { selectAllRepos } from './reposSlice';
 
 import { VisibilityFilters } from '../filters/filtersSlice';
+// eslint-disable-next-line react-hooks/rules-of-hooks
 
+const selectRepos = (state) => state;
 const selectFilter = (state) => state.visibilityFilter;
 
-// console.log('repos: ', selectAllRepos);
+// console.log('repos: ', selectRepos);
 const selectVisibleRepos = createSelector(
-  [selectAllRepos, selectFilter],
+  [selectRepos, selectFilter],
   (repos, filter) => {
     console.log('repos: ', repos);
     switch (filter) {
       case VisibilityFilters.SHOW_ALL:
         return repos;
       case VisibilityFilters.Javascript:
+        // console.log(repos);
         return repos.filter((t) => t.language === 'Javascript');
       case VisibilityFilters.Typescript:
         return repos.filter((t) => t.language === 'Typescript');
@@ -34,4 +36,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = { toggleTodo };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReposList);
+const visibleReposList = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ReposList);
+
+export default visibleReposList;

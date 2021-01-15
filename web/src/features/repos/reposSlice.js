@@ -1,7 +1,6 @@
 import {
   createSlice,
   createAsyncThunk,
-  createSelector,
   createEntityAdapter,
 } from '@reduxjs/toolkit';
 import axios from 'axios';
@@ -33,6 +32,9 @@ const reposSlice = createSlice({
         todo.completed = !todo.completed;
       }
     },
+    // getLanguages: {
+    //   const
+    // }
   },
   extraReducers: {
     [fetchRepos.pending]: (state, action) => {
@@ -59,8 +61,3 @@ export const {
   selectById: selectRepoById,
   selectIds: selectRepoIds,
 } = reposAdapter.getSelectors((state) => state.repos);
-
-export const selectReposByUser = createSelector(
-  [selectAllRepos, (state, userId) => userId],
-  (repos, userId) => repos.filter((repo) => repo.owner_id === userId)
-);

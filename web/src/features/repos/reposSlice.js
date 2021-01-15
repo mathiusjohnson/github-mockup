@@ -5,7 +5,7 @@ import {
 } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const url = 'https://api.github.com/users/silverorange/repos';
+const url = 'https://localhost:4000/repos';
 
 const reposAdapter = createEntityAdapter({
   sortComparer: (a, b) => b.created_at.localeCompare(a.created_at),
@@ -25,17 +25,7 @@ export const fetchRepos = createAsyncThunk('repos/fetchRepos', async () => {
 const reposSlice = createSlice({
   name: 'repos',
   initialState,
-  reducers: {
-    toggleTodo(state, action) {
-      const todo = state.find((todoitem) => todoitem.id === action.payload);
-      if (todo) {
-        todo.completed = !todo.completed;
-      }
-    },
-    // getLanguages: {
-    //   const
-    // }
-  },
+  reducers: {},
   extraReducers: {
     [fetchRepos.pending]: (state, action) => {
       state.status = 'loading';

@@ -3,33 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchRepos, selectRepoIds, selectRepoById } from './reposSlice';
 
-function RepoExcerpt({ repoId, languageToFilter }) {
+function RepoExcerpt({ repoId }) {
   const repo = useSelector((state) => selectRepoById(state, repoId));
 
-  // if (languageToFilter !== undefined && repo.language === languageToFilter) {
-  //   return (
-  //     <article key={repo.id}>
-  //       <h3>Name: {repo.name}</h3>
-  //       {repo.description !== null ? (
-  //         <p className="repo-content">
-  //           Description: {repo.description.substring(0, 100)}
-  //         </p>
-  //       ) : (
-  //         <p>no description</p>
-  //       )}
-  //       {repo.language !== undefined ? (
-  //         <p>Language:{repo.language}</p>
-  //       ) : (
-  //         <p>No languages</p>
-  //       )}
-  //       <p>Forks: {repo.forks_count}</p>
-  //       <p>{repo.created_at}</p>
-  //       <Link to={`/repos/${repo.id}`} className="button muted-button">
-  //         View Repo
-  //       </Link>
-  //     </article>
-  //   );
-  // } else {
   return (
     <article key={repo.id}>
       <h3>Name: {repo.name}</h3>
@@ -53,40 +29,12 @@ function RepoExcerpt({ repoId, languageToFilter }) {
     </article>
   );
 }
-// }
+
 export default function ReposList() {
   const dispatch = useDispatch();
   const orderedrepoIds = useSelector(selectRepoIds);
 
-  // const entities = useSelector((state) => state.repos.entities);
-
-  // const languages = [];
-  // for (const entity in entities) {
-  //   if (Object.hasOwnProperty.call(entities, entity)) {
-  //     const element = entities[entity];
-  //     if (!languages.includes(element.language)) {
-  //       languages.push(element.language);
-  //     }
-  //   }
-  // }
-
   let content;
-  // let buttonClicked = false;
-  // let languageToFilter;
-
-  // const filterLanguages = (language) => {
-  //   buttonClicked = true;
-  //   languageToFilter = language;
-  //   console.log(buttonClicked, languageToFilter);
-  // };
-
-  // const buttons = languages.map((language, index) => {
-  //   return (
-  //     <button onClick={() => filterLanguages(language)} key={index}>
-  //       {language}
-  //     </button>
-  //   );
-  // });
 
   const repoStatus = useSelector((state) => state.repos.status);
   const error = useSelector((state) => state.repos.error);
@@ -100,16 +48,9 @@ export default function ReposList() {
   if (repoStatus === 'loading') {
     content = <div className="loader">Loading...</div>;
   } else if (repoStatus === 'succeeded') {
-    // if (buttonClicked === true) {
-    //   console.log('this works');
-    //   content = orderedrepoIds.map((repoId) => (
-    //     <RepoExcerpt key={repoId} repoId={repoId} language={languageToFilter} />
-    //   ));
-    // } else {
     content = orderedrepoIds.map((repoId) => (
       <RepoExcerpt key={repoId} repoId={repoId} />
     ));
-    // }
   } else if (repoStatus === 'error') {
     content = <div>{error}</div>;
   }
@@ -117,7 +58,6 @@ export default function ReposList() {
   return (
     <section className="repos-list">
       <h2>Repos</h2>
-      {/* <ul>{buttons}</ul> */}
       {content}
     </section>
   );

@@ -15,8 +15,17 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <VisibleRepoList />
+        <Footer />
         <Switch>
+          <Route
+            exact={true}
+            path="/"
+            render={() => (
+              <React.Fragment>
+                <VisibleRepoList />
+              </React.Fragment>
+            )}
+          />
           <Route
             exact={true}
             path="/"
@@ -33,7 +42,6 @@ function App() {
           />
           <Redirect to="/" />
         </Switch>
-        <Footer />
       </div>
     </Router>
   );

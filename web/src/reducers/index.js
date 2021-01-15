@@ -1,10 +1,8 @@
-import { combineReducers } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
+import visibilityFilterReducer from '../features/filters/Footer';
 import reposReducer from '../features/repos/reposSlice';
-import visibilityFilterReducer from '../features/filters/filtersSlice';
 
 export default combineReducers({
-  reducer: {
-    repos: reposReducer,
-    visibilityFilter: visibilityFilterReducer,
-  },
+  visibilityFilter: visibilityFilterReducer,
+  repos: reposReducer,
 });

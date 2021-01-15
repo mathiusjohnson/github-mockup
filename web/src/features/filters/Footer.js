@@ -7,7 +7,7 @@ const Footer = () => (
     <span>Show: </span>
     <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
     <FilterLink filter={VisibilityFilters.JAVASCRIPT}>Javascript</FilterLink>
-    <FilterLink filter={VisibilityFilters.TYPESCRIPT}>Completed</FilterLink>
+    <FilterLink filter={VisibilityFilters.CSS}>CSS</FilterLink>
   </div>
 );
 

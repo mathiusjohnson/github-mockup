@@ -4,14 +4,11 @@ import './index.css';
 import App from './App';
 import rootReducer from './reducers';
 import { Provider } from 'react-redux';
-import { fetchRepos } from './features/repos/reposSlice';
 import { configureStore } from '@reduxjs/toolkit';
 
 const store = configureStore({
   reducer: rootReducer,
 });
-
-store.dispatch(fetchRepos());
 
 ReactDOM.render(
   <React.StrictMode>

@@ -5,11 +5,13 @@ import Button from './Button';
 
 
 export default function RepoList ({languages}) {
-  const selectedLanguages = useSelector(selectAllLanguages);
+
+  const selectedLanguages = useSelector(selectAllLanguages)
 
   const dispatch = useDispatch();
 
   let content;
+
   console.log("languages: ", selectedLanguages);
 
   const languageStatus = useSelector((state) => state.languages.status);

@@ -9,9 +9,9 @@ const url = 'http://localhost:4000/languages';
 
 const languagesAdapter = createEntityAdapter({
 	selectId: (language) => language.id,
+
 })
 
-// console.log(languagesAdapter);
 const initialState = languagesAdapter.getInitialState({
   status: 'idle',
   error: null,
@@ -19,21 +19,10 @@ const initialState = languagesAdapter.getInitialState({
 
 export const fetchLanguages = createAsyncThunk('languages/fetchLanguages', async () => {
   const response = await axios.get(url);
-  console.log(response.data);
+  console.log("data in fetch: ", typeof response.data);
   return response.data;
 });
 
-
-// export const fetchLanguages = createAsyncThunk(
-//   'users/fetchById',
-//   async (userId, thunkAPI) => {
-//     const response = await fetch(url, {
-//       signal: thunkAPI.signal,
-//     })
-//     console.log(response);
-//     return await response.json()
-//   }
-// )
 const languagesSlice = createSlice({
   name: 'languages',
   initialState,

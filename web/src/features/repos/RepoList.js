@@ -5,7 +5,6 @@ import { fetchRepos } from './repoSlice';
 
 export default function RepoList ({repos}) {
   const dispatch = useDispatch();
-  // const orderedrepoIds = useSelector(selectRepoIds);
 
   let content;
 

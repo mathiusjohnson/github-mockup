@@ -18,6 +18,7 @@ const initialState = reposAdapter.getInitialState({
 
 export const fetchRepos = createAsyncThunk('repos/fetchRepos', async () => {
   const response = await axios.get(url);
+  console.log(typeof response.data);
   return response.data;
 });
 

@@ -22,7 +22,6 @@ languages.get('/', async (req, res) => {
     let languages = {};
     let id = 0;
     for (const key in data) {
-      // console.log("key: ", key);
       if (Object.hasOwnProperty.call(data, key)) {
         const repo = data[key];
         // console.log(repo.language);
@@ -31,9 +30,10 @@ languages.get('/', async (req, res) => {
           continue;
         }
         if (!languages[repo.language]) {
-         languages[repo.language] = repo.language;
+         languages[repo.language] = {id, language: repo.language};
         }
       }
+      id++
     }
     res.json(languages)
   });

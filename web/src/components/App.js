@@ -8,7 +8,7 @@ import {
 
 import Footer from '../features/filters/Footer';
 import SingleRepoPage from '../features/repos/singleRepoPage';
-import { VisibleRepoList } from '../features/todos/VisibleRepoList';
+import { VisibleRepoList } from '../features/repos/VisibleRepoList';
 function App() {
   console.log("length: ", VisibleRepoList.length);
   return (

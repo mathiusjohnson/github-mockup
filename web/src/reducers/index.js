@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import visibilityFilterReducer from '../features/filters/Footer';
-import reposReducer from '../features/repos/reposSlice';
-
+import reposReducer from 'features/repos/repoSlice';
+import visibilityFilterReducer from 'features/filters/filtersSlice';
+// import reposReducer from 'features/repos/reposSlice';
 export default combineReducers({
-  visibilityFilter: visibilityFilterReducer,
   repos: reposReducer,
-});
+  // repos: reposReducer,
+  visibilityFilter: visibilityFilterReducer
+})

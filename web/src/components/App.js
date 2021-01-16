@@ -6,12 +6,11 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-import ReposList from './features/repos/reposList';
-import SingleRepoPage from './features/repos/singleRepoPage';
-import VisibleRepoList from './features/repos/visibleReposList';
-import Footer from './features/filters/Footer';
-
+import Footer from '../features/filters/Footer';
+import SingleRepoPage from '../features/repos/singleRepoPage';
+import { VisibleRepoList } from '../features/todos/VisibleRepoList';
 function App() {
+  console.log("length: ", VisibleRepoList.length);
   return (
     <Router>
       <div className="App">
@@ -23,15 +22,6 @@ function App() {
             render={() => (
               <React.Fragment>
                 <VisibleRepoList />
-              </React.Fragment>
-            )}
-          />
-          <Route
-            exact={true}
-            path="/"
-            render={() => (
-              <React.Fragment>
-                <ReposList />
               </React.Fragment>
             )}
           />

@@ -4,25 +4,25 @@ import https from 'https';
 
 export const repos = Router();
 
-const username = 'mathiusjohnson';
-const options = {
-  hostname: 'api.github.com',
-  path: '/users/' + username + '/repos',
-  method: 'GET',
-  headers: { 'user-agent': 'node' },
-};
-
-let body = '';
-
-const request = https.request(options, function (response) {
-  response.on('data', function (chunk) {
-    body += chunk;
-  });
-});
-request.end();
-
 repos.get('/', async (req, res) => {
-  // res.header('Cache-Control', 'no-store');
+  res.header('Cache-Control', 'no-store');
+  const username = 'mathiusjohnson';
+  const options = {
+    hostname: 'api.github.com',
+    path: '/users/' + username + '/repos',
+    method: 'GET',
+    headers: { 'user-agent': 'node' },
+  };
+
+  let body = '';
+
+  const request = https.request(options, function (response) {
+    response.on('data', function (chunk) {
+      body += chunk;
+    });
+  });
+  request.end();
+
   console.log(typeof body);
   let data = JSON.parse(body);
   data = data.filter((repo) => repo.fork === false);

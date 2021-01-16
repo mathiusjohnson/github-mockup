@@ -34,14 +34,3 @@ export default function RepoList ({repos}) {
     </ul>
   )
 }
-
-// RepoList.propTypes = {
-//   repos: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       language: PropTypes.string.isRequired,
-//       name: PropTypes.string.isRequired,
-//       description: PropTypes.string,
-//       forks_count: PropTypes.number.isNotRequired,
-//     }).isRequired
-//   ).isRequired,
-// }

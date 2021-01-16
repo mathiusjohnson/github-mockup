@@ -6,5 +6,5 @@ import languagesReducer from 'features/buttons/languagesSlice'
 export default combineReducers({
   repos: reposReducer,
   visibilityFilter: visibilityFilterReducer,
-  languagesReducer: languagesReducer,
+  languages: languagesReducer,
 })

@@ -11,6 +11,7 @@ const languagesAdapter = createEntityAdapter({
 	selectId: (language) => language.id,
 })
 
+// console.log(languagesAdapter);
 const initialState = languagesAdapter.getInitialState({
   status: 'idle',
   error: null,
@@ -22,6 +23,17 @@ export const fetchLanguages = createAsyncThunk('languages/fetchLanguages', async
   return response.data;
 });
 
+
+// export const fetchLanguages = createAsyncThunk(
+//   'users/fetchById',
+//   async (userId, thunkAPI) => {
+//     const response = await fetch(url, {
+//       signal: thunkAPI.signal,
+//     })
+//     console.log(response);
+//     return await response.json()
+//   }
+// )
 const languagesSlice = createSlice({
   name: 'languages',
   initialState,

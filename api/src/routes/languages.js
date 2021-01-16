@@ -25,7 +25,11 @@ languages.get('/', async (req, res) => {
       // console.log("key: ", key);
       if (Object.hasOwnProperty.call(data, key)) {
         const repo = data[key];
-        console.log(repo.language);
+        // console.log(repo.language);
+
+        if (repo.language === null) {
+          continue;
+        }
         if (!languages[repo.language]) {
          languages[repo.language] = repo.language;
         }

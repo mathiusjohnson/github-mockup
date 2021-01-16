@@ -1,36 +1,21 @@
 import { Router } from 'express';
-import yourJson from '../../data/repos.json';
-import https from 'https';
+const { Octokit } = require("@octokit/rest");
 
 export const repos = Router();
 
 repos.get('/', async (req, res) => {
   res.header('Cache-Control', 'no-store');
-  const username = 'mathiusjohnson';
-  const options = {
-    hostname: 'api.github.com',
-    path: '/users/' + username + '/repos',
-    method: 'GET',
-    headers: { 'user-agent': 'node' },
-  };
 
-  let body = '';
-
-  const request = https.request(options, function (response) {
-    response.on('data', function (chunk) {
-      body += chunk;
-    });
+  const octokit = new Octokit({
+    auth: "0acfb7a6a3c3b0f4891e6fb997a8e095ae97a32f",
   });
-  request.end();
 
-  console.log(typeof body);
-  let data = JSON.parse(body);
-  data = data.filter((repo) => repo.fork === false);
-
-  for (const repository of yourJson) {
-    if (repository.fork === false) {
-      data.push(repository);
-      res.json(data);
-    }
-  }
+  octokit.repos
+    .listForOrg({
+      org: "octokit",
+      type: "public",
+    })
+    .then(({ data }) => {
+      res.json(data)
+    });
 });

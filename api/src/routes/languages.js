@@ -1,32 +1,36 @@
 import { Router } from 'express';
-import yourJson from '../../data/repos.json';
-import https from 'https';
+const { Octokit } = require("@octokit/rest");
 
 export const languages = Router();
 
-const username = 'mathiusjohnson';
-const options = {
-  hostname: 'api.github.com',
-  path: '/users/' + username + '/repos',
-  method: 'GET',
-  headers: { 'user-agent': 'node' },
-};
-
-let body = '';
-
-const request = https.request(options, function (response) {
-  response.on('data', function (chunk) {
-    body += chunk;
-  });
-});
-request.end();
-
 languages.get('/', async (req, res) => {
   res.header('Cache-Control', 'no-store');
-  console.log(typeof body);
-  let data = JSON.parse(body);
-  data = data.filter((repo) => repo.fork === false);
 
+  const { Octokit } = require("@octokit/rest");
 
-  res.json(data);
+  const octokit = new Octokit({
+    auth: "0acfb7a6a3c3b0f4891e6fb997a8e095ae97a32f",
+  });
+
+  octokit.repos
+  .listForOrg({
+    org: "octokit",
+    type: "public",
+  })
+  .then(({ data }) => {
+
+    let languages = {};
+    let id = 0;
+    for (const key in data) {
+      // console.log("key: ", key);
+      if (Object.hasOwnProperty.call(data, key)) {
+        const repo = data[key];
+        console.log(repo.language);
+        if (!languages[repo.language]) {
+         languages[repo.language] = repo.language;
+        }
+      }
+    }
+    res.json(languages)
+  });
 });

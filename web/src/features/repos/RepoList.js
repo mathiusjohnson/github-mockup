@@ -1,16 +1,12 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types'
 import Repo from './Repo'
-import { fetchRepos, selectRepoIds, selectAllRepos } from './repoSlice';
+import { fetchRepos } from './repoSlice';
 
 export default function RepoList ({repos}) {
-  console.log(repos);
   const dispatch = useDispatch();
-  const orderedrepoIds = useSelector(selectRepoIds);
+  // const orderedrepoIds = useSelector(selectRepoIds);
 
-  // const repos = useSelector(selectAllRepos);
-  // console.log(repos);
   let content;
 
   const repoStatus = useSelector((state) => state.repos.status);
@@ -29,9 +25,8 @@ export default function RepoList ({repos}) {
   } else if (repoStatus === 'error') {
     content = <div>{error}</div>;
   }
-  console.log("repos in repolist: ", content);
-  // eslint-disable-next-line no-unused-expressions
-  return ( 
+
+  return (
     <ul>
       {repos.map(repo => (
         <Repo key={repo.id} {...repo} />

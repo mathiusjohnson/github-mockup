@@ -11,6 +11,8 @@
     "prettier-write": "prettier --config .prettierrc.json --write 'src/**/*.{ts,tsx}'"
   },
   "dependencies": {
+    "@octokit/auth-token": "^2.4.4",
+    "@octokit/core": "^3.2.4",
     "@octokit/rest": "^18.0.12",
     "cors": "^2.8.5",
     "debug": "^4.1.1",

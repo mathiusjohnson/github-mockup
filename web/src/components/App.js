@@ -9,11 +9,15 @@ import {
 import Footer from '../features/filters/Footer';
 import SingleRepoPage from '../features/repos/singleRepoPage';
 import { VisibleRepoList } from '../features/repos/VisibleRepoList';
+// import CommitList from './CommitList';
+import ButtonList from '../features/buttons/ButtonList';
+
 function App() {
-  console.log("length: ", VisibleRepoList.length);
   return (
     <Router>
       <div className="App">
+        {/* <CommitList /> */}
+        <ButtonList />
         <Footer />
         <Switch>
           <Route

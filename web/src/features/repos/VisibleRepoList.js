@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit';
 import RepoList from './RepoList';
 import { VisibilityFilters } from '../filters/filtersSlice';
-import { fetchRepos } from 'features/repos/reposSlice';
+// import { fetchRepos } from 'features/repos/reposSlice';
 
 const selectRepos = (state) => state;
 const selectFilter = (state) => state.visibilityFilter;
@@ -15,14 +15,10 @@ const selectVisibleRepos = createSelector(
     repoKeys.forEach((key) => {
       repoArr.push(repos.repos.entities[key]);
     });
-    // repoArr.forEach(repo => console.log(repo.language))
     switch (filter) {
       case VisibilityFilters.SHOW_ALL:
         return repoArr;
       case VisibilityFilters.JAVASCRIPT:
-        console.log('javascript filter triggered');
-        // console.log(repos);
-        console.log(repoArr.filter(repo => repo.language === 'JavaScript'))
         return repoArr.filter((t) => t.language === 'JavaScript');
       case VisibilityFilters.TYPESCRIPT:
         return repoArr.filter((t) => t.language === 'TypeScript');

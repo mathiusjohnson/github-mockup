@@ -19,7 +19,7 @@ const initialState = languagesAdapter.getInitialState({
 
 export const fetchLanguages = createAsyncThunk('languages/fetchLanguages', async () => {
   const response = await axios.get(url);
-  console.log("data in fetch: ", typeof response.data);
+  console.log('in languages: ', response.data);
   return response.data;
 });
 
@@ -47,5 +47,4 @@ export default languagesSlice.reducer;
 export const {
   selectAll: selectAllLanguages,
 } = languagesAdapter.getSelectors((state) => {
-  console.log("state in language reducer: ", state);
   return state.languages });

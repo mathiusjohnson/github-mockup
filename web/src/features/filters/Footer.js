@@ -1,8 +1,19 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import FilterLink from './FilterLink'
-import { VisibilityFilters } from './filtersSlice'
+import { VisibilityFilters, addVisibilityFilter } from './filtersSlice'
+import { selectAllLanguages } from '../buttons/languagesSlice'
+const Footer = (
+) => {
+  const dispatch = useDispatch();
 
-const Footer = () => {
+  const languages = useSelector(selectAllLanguages)
+  console.log("languages in footer: ", languages);
+  languages.forEach(language => {
+    dispatch(addVisibilityFilter(language, language))
+    console.log(language);
+
+  })
   return (
     <div>
       <span>Show: </span>
@@ -11,6 +22,8 @@ const Footer = () => {
       <FilterLink filter={VisibilityFilters.CSS}>CSS</FilterLink>
     </div>
   )
-} 
+}
 
 export default Footer
+
+

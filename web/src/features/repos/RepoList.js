@@ -25,11 +25,14 @@ export default function RepoList ({repos}) {
     content = <div>{error}</div>;
   }
 
+  content = repos;
+
   return (
     <ul>
-      {repos.map(repo => (
+      {content.map(repo => (
         <Repo key={repo.id} {...repo} />
       ))}
+
     </ul>
   )
 }

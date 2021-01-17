@@ -10,14 +10,14 @@ import Footer from '../features/filters/Footer';
 import SingleRepoPage from '../features/repos/singleRepoPage';
 import { VisibleRepoList } from '../features/repos/VisibleRepoList';
 // import CommitList from './CommitList';
-import ButtonList from '../features/buttons/ButtonList';
+import LanguageList from '../features/buttons/fetchLanguages';
 
 function App() {
   return (
     <Router>
       <div className="App">
         {/* <CommitList /> */}
-        <ButtonList />
+        <LanguageList />
         <Footer />
         <Switch>
           <Route

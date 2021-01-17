@@ -22,7 +22,7 @@ export default function SinglePostPage({ match }) {
       <article className="post">
         <h2>{repo.title}</h2>
         <p>Updated at: {repo.updated_at}</p>
-        <a href={readmeURL} target="_blank" rel="noreferrer">
+        <a href={readmeURL} target="_blank" rel="noopener noreferrer" >
           README
         </a>
         <br />

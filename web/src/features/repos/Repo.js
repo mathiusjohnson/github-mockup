@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 
 const Repo = ({ name, description, language, forks_count, created_at, id }) => (

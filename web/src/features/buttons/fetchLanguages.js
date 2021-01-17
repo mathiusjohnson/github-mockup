@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchLanguages, selectAllLanguages } from './languagesSlice';
-import Button from './Button';
+import { fetchLanguages, selectAllLanguages } from '../filters/filtersSlice';
+// import Button from './Button';
 
 
-export default function RepoList ({languages}) {
+export default function LanguageList ({languages}) {
 
   const selectedLanguages = useSelector(selectAllLanguages)
 
+  // console.log(selectedLanguages);
   const dispatch = useDispatch();
 
   let content;
-
-  console.log("languages: ", selectedLanguages);
 
   const languageStatus = useSelector((state) => state.languages.status);
   const error = useSelector((state) => state.languages.error);
@@ -31,12 +30,12 @@ export default function RepoList ({languages}) {
     content = <div>{error}</div>;
   }
 
-  console.log("content: ", content);
   return (
     <ul>
       {/* {content.map(language => (
         <Button key={language.id} {...language} />
       ))} */}
+      {content}
     </ul>
   )
 }

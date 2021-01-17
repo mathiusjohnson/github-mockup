@@ -15,11 +15,11 @@ const Link = ({ active, children, setVisibilityFilter, filter }) =>  {
 )
   }
 
-Link.propTypes = {
-  active: PropTypes.bool.isRequired,
-  children: PropTypes.node.isRequired,
-  setVisibilityFilter: PropTypes.func.isRequired,
-  filter: PropTypes.string.isRequired
-}
+// Link.propTypes = {
+//   active: PropTypes.bool.isRequired,
+//   children: PropTypes.node.isRequired,
+//   setVisibilityFilter: PropTypes.func.isRequired,
+//   filter: PropTypes.string.isRequired
+// }
 
 export default Link

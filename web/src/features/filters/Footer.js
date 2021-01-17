@@ -13,13 +13,18 @@ const Footer = (
     dispatch(addVisibilityFilter(language))
   })
 
-  console.log(VisibilityFilters);
+  console.log(typeof VisibilityFilters);
+  const filterKeys = Object.keys(VisibilityFilters)
+  const renderedFilters = filterKeys.map((filter, index) => {
+      return (
+        <FilterLink key={index} filter={VisibilityFilters[filter]}>{filter}</FilterLink>
+      )
+    })
+
   return (
     <div>
       <span>Show: </span>
-      <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
-      <FilterLink filter={VisibilityFilters.JAVASCRIPT}>JAVASCRIPT</FilterLink>
-      <FilterLink filter={VisibilityFilters.CSS}>CSS</FilterLink>
+        {renderedFilters}
     </div>
   )
 }

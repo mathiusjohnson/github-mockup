@@ -8,13 +8,13 @@ const Footer = (
   const dispatch = useDispatch();
 
   const languages = useSelector(selectAllLanguages)
-  console.log("languages in footer: ", languages);
+
   languages.forEach(language => {
     dispatch(addVisibilityFilter(language))
   })
 
-  console.log(typeof VisibilityFilters);
   const filterKeys = Object.keys(VisibilityFilters)
+
   const renderedFilters = filterKeys.map((filter, index) => {
       return (
         <FilterLink key={index} filter={VisibilityFilters[filter]}>{filter}</FilterLink>

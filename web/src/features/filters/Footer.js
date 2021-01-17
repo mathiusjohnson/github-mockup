@@ -10,10 +10,10 @@ const Footer = (
   const languages = useSelector(selectAllLanguages)
   console.log("languages in footer: ", languages);
   languages.forEach(language => {
-    dispatch(addVisibilityFilter(language, language))
-    console.log(language);
-
+    dispatch(addVisibilityFilter(language))
   })
+
+  console.log(VisibilityFilters);
   return (
     <div>
       <span>Show: </span>

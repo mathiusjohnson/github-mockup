@@ -55,11 +55,12 @@ const filtersSlice = createSlice({
   initialState: VisibilityFilters.SHOW_ALL,
   reducers: {
     setVisibilityFilter(state, action) {
-      console.log("state in filter:", state);
       return action.payload
     },
     addVisibilityFilter(state, action) {
-      console.log("state and action in addfilter fxn: ", state, action);
+      const type = action.payload.language.toUpperCase()
+      const filter = action.payload.language;
+      VisibilityFilters[type] = filter;
       return state;
     }
   }

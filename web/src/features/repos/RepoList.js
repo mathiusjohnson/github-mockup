@@ -2,8 +2,11 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Repo from './Repo'
 import { fetchRepos } from './repoSlice';
+import { connect } from "react-redux";
+import LanguageList from '../buttons/fetchLanguages';
+import Filter from '../filters/Footer';
 
-export default function RepoList ({repos}) {
+function RepoList ({repos}) {
   const dispatch = useDispatch();
 
   let content;
@@ -28,11 +31,17 @@ export default function RepoList ({repos}) {
   content = repos;
 
   return (
-    <ul>
-      {content.map(repo => (
-        <Repo key={repo.id} {...repo} />
-      ))}
+    <div>
+      <LanguageList />
+      <Filter />
+      <ul>
+        {content.map(repo => (
+          <Repo key={repo.id} {...repo} />
+        ))}
 
-    </ul>
+      </ul>
+    </div>
   )
 }
+
+export default connect(null)(RepoList)

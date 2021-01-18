@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import FilterLink from './FilterLink'
 import { VisibilityFilters, addVisibilityFilter } from './filtersSlice'
 import { selectAllLanguages } from '../buttons/languagesSlice'
-const Footer = (
+const Filter = (
 ) => {
   const dispatch = useDispatch();
 
@@ -29,6 +29,6 @@ const Footer = (
   )
 }
 
-export default Footer
+export default Filter
 
 

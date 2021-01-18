@@ -6,12 +6,12 @@ import { loadState } from '../../helpers/localStorage';
 import { selectRepoById } from './repoSlice';
 
 
-function SinglePostPage() {
+function SinglePostPage({repos}) {
   // const repos =
   const repoId = loadState()
-  // console.log("persisted: ", repoId);
-  const repos = useSelector((state) => state.repos)
-  // console.log(repos);
+  console.log("persisted: ", repoId);
+  // const repos = useSelector((state) => state.repos)
+  console.log(repos);
   const repo = useSelector((state)=> selectRepoById(state, repoId))
 
   // const currentRepo = useSelector((state) => selectCurrentRepo(state))

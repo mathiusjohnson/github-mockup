@@ -16,8 +16,6 @@ function App() {
     <Router>
       <div className="App">
         {/* <CommitList /> */}
-        <LanguageList />
-        <Footer />
         <Switch>
           <Route
             exact={true}

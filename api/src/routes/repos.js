@@ -4,7 +4,7 @@ import yourJson from '../../data/repos.json';
 const { Octokit } = require("@octokit/rest");
 
 export const repos = Router();
-console.log("this repofile works");
+console.log("this repo file works");
 repos.get('/', async (req, res) => {
   res.header('Cache-Control', 'no-store');
 

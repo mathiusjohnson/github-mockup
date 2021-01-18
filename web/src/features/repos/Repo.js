@@ -1,8 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from "react-redux";
+import { saveState } from '../../helpers/localStorage';
+import { selectRepoById } from './repoSlice';
+import { useSelector } from 'react-redux';
 
-const Repo = ({ name, description, language, forks_count, id, setCurrentRepo }) => {
+const Repo = ({ name, description, language, forks_count, created_at, id }) => {
+
+  let repoId;
+  const SetCookie = (id) => {
+    // console.log("id in cookie fn:", id);
+    repoId = id
+    saveState(id)
+  }
+
+  const repo = useSelector((state) => selectRepoById(state, repoId));
+  saveState(repo)
 
    return (
   <article key={id}>
@@ -20,7 +32,7 @@ const Repo = ({ name, description, language, forks_count, id, setCurrentRepo }) 
     <p>No languages</p>
   )}
   <p>Forks: {forks_count}</p>
-  <Link onClick={() => setCurrentRepo(id)} to={`/repos/${id}`} state={{id: id}}>
+  <Link onClick={() => SetCookie(id)} to={`/repos/${id}`} className="button muted-button" state={{id: id}}>
     View Repo
   </Link>
 </article>
@@ -33,4 +45,4 @@ const Repo = ({ name, description, language, forks_count, id, setCurrentRepo }) 
 //   forks_count: PropTypes.number.isRequired,
 // }
 
-export default connect(null)(Repo);
+export default Repo;

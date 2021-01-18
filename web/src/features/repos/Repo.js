@@ -1,15 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { loadState, saveState } from '../../helpers/localStorage';
+import { connect } from "react-redux";
 
-
-const Repo = ({ name, description, language, forks_count, created_at, id }) => {
-
-  const setCookie = (id) => {
-    // console.log("id in cookie fn:", id);
-    localStorage.setItem('currentRepo', (id));
-    saveState(id)
-  }
+const Repo = ({ name, description, language, forks_count, id, setCurrentRepo }) => {
 
    return (
   <article key={id}>
@@ -27,7 +20,7 @@ const Repo = ({ name, description, language, forks_count, created_at, id }) => {
     <p>No languages</p>
   )}
   <p>Forks: {forks_count}</p>
-  <Link onClick={() => setCookie(id)} to={`/repos/${id}`} className="button muted-button" state={{id: id}}>
+  <Link onClick={() => setCurrentRepo(id)} to={`/repos/${id}`} state={{id: id}}>
     View Repo
   </Link>
 </article>
@@ -40,4 +33,4 @@ const Repo = ({ name, description, language, forks_count, created_at, id }) => {
 //   forks_count: PropTypes.number.isRequired,
 // }
 
-export default Repo;
+export default connect(null)(Repo);

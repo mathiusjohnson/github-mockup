@@ -1,7 +1,7 @@
 import {
   createSlice,
   createAsyncThunk,
-  createEntityAdapter,
+  createEntityAdapter,  createSelector,
 } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -14,6 +14,7 @@ const reposAdapter = createEntityAdapter({
 const initialState = reposAdapter.getInitialState({
   status: 'idle',
   error: null,
+  currentRepo: {},
 });
 
 export const fetchRepos = createAsyncThunk('repos/fetchRepos', async () => {
@@ -24,14 +25,18 @@ export const fetchRepos = createAsyncThunk('repos/fetchRepos', async () => {
 const reposSlice = createSlice({
   name: 'repos',
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentRepo(state, action) {
+      console.log(state, action.payload);
+      return action.payload;
+    },
+  },
   extraReducers: {
     [fetchRepos.pending]: (state, action) => {
       state.status = 'loading';
     },
     [fetchRepos.fulfilled]: (state, action) => {
       state.status = 'succeeded';
-      // Add any fetched repos to the array
       reposAdapter.upsertMany(state, action.payload);
     },
     [fetchRepos.rejected]: (state, action) => {
@@ -41,7 +46,7 @@ const reposSlice = createSlice({
   },
 });
 
-// export const { postAdded, postUpdated, reactionAdded } = reposSlice.actions;
+export const { setCurrentRepo } = reposSlice.actions;
 
 export default reposSlice.reducer;
 
@@ -50,3 +55,10 @@ export const {
   selectById: selectRepoById,
   selectIds: selectRepoIds,
 } = reposAdapter.getSelectors((state) => state.repos);
+
+export const selectCurrentRepo = createSelector(
+  [selectAllRepos, (state) => {
+    // console.log(state);
+    return state;
+  }],
+)

@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import yourJson from '../../data/repos.json';
+
 const { Octokit } = require("@octokit/rest");
 
 export const repos = Router();
@@ -16,6 +18,12 @@ repos.get('/', async (req, res) => {
       type: "public",
     })
     .then(({ data }) => {
-      res.json(data)
+      data = data.filter((repo) => repo.fork === false)
+      for (const repository of yourJson) {
+          if (repository.fork === false) {
+            data.push(repository);
+            res.json(data);
+          }
+        }
     });
 });

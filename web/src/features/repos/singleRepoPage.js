@@ -1,26 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector, connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { selectRepoById } from './repoSlice';
-import axios from 'axios';
 import CommitList from './components/CommitList';
-import { loadState, saveState } from '../../helpers/localStorage';
+import { loadState } from '../../helpers/localStorage';
+import { selectRepoById } from './repoSlice';
 
-export default function SinglePostPage({ match }) {
-  const { repoId } = match.params;
-  const persistedId = loadState()
-  console.log("persisted: ", persistedId);
-  let cookieId = localStorage.getItem('currentRepo')
-	? localStorage.getItem('currentRepo')
-  : '';
 
-  const repo = useSelector((state) => selectRepoById(state, persistedId));
+function SinglePostPage() {
+  // const repos =
+  const repoId = loadState()
+  // console.log("persisted: ", repoId);
+  const repos = useSelector((state) => state.repos)
+  // console.log(repos);
+  const repo = useSelector((state)=> selectRepoById(state, repoId))
 
-  console.log(repo);
+  // const currentRepo = useSelector((state) => selectCurrentRepo(state))
+
+
+
+  // console.log(repo);
   if (!repo) {
     return (
       <section>
         <h2>Repo not found!</h2>
+        <Link to="/repos">Back</Link>
       </section>
     );
   }
@@ -43,3 +46,9 @@ export default function SinglePostPage({ match }) {
     </section>
   );
 }
+
+const mapStateToProps = state => ({
+  repos: state.repos
+});
+
+export default connect(mapStateToProps)(SinglePostPage);

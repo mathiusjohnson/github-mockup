@@ -2,7 +2,7 @@ import { Router } from 'express';
 const { Octokit } = require("@octokit/rest");
 
 export const repos = Router();
-
+console.log("this repofile works");
 repos.get('/', async (req, res) => {
   res.header('Cache-Control', 'no-store');
 
@@ -12,7 +12,7 @@ repos.get('/', async (req, res) => {
 
   octokit.repos
     .listForOrg({
-      org: "octokit",
+      org: "silverorange",
       type: "public",
     })
     .then(({ data }) => {

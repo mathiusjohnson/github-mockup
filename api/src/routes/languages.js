@@ -14,7 +14,7 @@ languages.get('/', async (req, res) => {
 
   octokit.repos
   .listForOrg({
-    org: "octokit",
+    org: "silverorange",
     type: "public",
   })
   .then(({ data }) => {

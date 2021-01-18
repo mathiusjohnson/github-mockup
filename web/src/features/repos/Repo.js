@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { loadState, saveState } from '../../helpers/localStorage';
+
+
 const Repo = ({ name, description, language, forks_count, created_at, id }) => {
 
   const setCookie = (id) => {
-    console.log("id in cookie fn:", id);
+    // console.log("id in cookie fn:", id);
     localStorage.setItem('currentRepo', (id));
+    saveState(id)
   }
 
    return (

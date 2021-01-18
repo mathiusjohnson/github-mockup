@@ -4,21 +4,19 @@ import { Link } from 'react-router-dom';
 import { selectRepoById } from './repoSlice';
 import axios from 'axios';
 import CommitList from './components/CommitList';
+import { loadState, saveState } from '../../helpers/localStorage';
 
 export default function SinglePostPage({ match }) {
   const { repoId } = match.params;
-
+  const persistedId = loadState()
+  console.log("persisted: ", persistedId);
   let cookieId = localStorage.getItem('currentRepo')
 	? localStorage.getItem('currentRepo')
   : '';
-  // console.log(typeof cookieId);
-  console.log("params: ", repoId);
-  const repo = useSelector((state) => selectRepoById(state, repoId));
 
+  const repo = useSelector((state) => selectRepoById(state, persistedId));
 
-  const readmeURL = `https://raw.githubusercontent.com/${repo.full_name}/master/README.md`;
-  const repoName = repo.name
-
+  console.log(repo);
   if (!repo) {
     return (
       <section>
@@ -26,6 +24,9 @@ export default function SinglePostPage({ match }) {
       </section>
     );
   }
+
+  const readmeURL = `https://raw.githubusercontent.com/${repo.full_name}/master/README.md`;
+  const repoName = repo.name
 
   return (
     <section>

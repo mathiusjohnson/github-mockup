@@ -4,10 +4,16 @@ import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import App from './components/App'
 import rootReducer from './reducers'
+import { loadState, saveState } from './helpers/localStorage';
+import throttle from 'lodash/throttle';
+
+const persistedState = loadState();
 
 const store = configureStore({
-  reducer: rootReducer
+  reducer: rootReducer,
+  persistedState
 })
+
 
 render(
   <Provider store={store}>

@@ -16,7 +16,6 @@ const initialState = languagesAdapter.getInitialState({
   error: null,
 });
 
-let languages = [];
 export const fetchLanguages = createAsyncThunk('languages/fetchLanguages', async () => {
   const response = await axios.get(url);
   return response.data;

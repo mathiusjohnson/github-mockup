@@ -8,7 +8,6 @@ export default function LanguageList ({languages}) {
 
   const selectedLanguages = useSelector(selectAllLanguages)
 
-  // console.log(selectedLanguages);
   const dispatch = useDispatch();
 
   let content;
@@ -31,11 +30,8 @@ export default function LanguageList ({languages}) {
   }
 
   return (
-    <ul>
-      {/* {content.map(language => (
-        <Button key={language.id} {...language} />
-      ))} */}
+    <div>
       {content}
-    </ul>
+    </div>
   )
 }

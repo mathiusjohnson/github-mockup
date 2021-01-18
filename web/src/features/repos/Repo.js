@@ -1,7 +1,13 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
+const Repo = ({ name, description, language, forks_count, created_at, id }) => {
 
-const Repo = ({ name, description, language, forks_count, created_at, id }) => (
+  const setCookie = (id) => {
+    console.log("id in cookie fn:", id);
+    localStorage.setItem('currentRepo', (id));
+  }
+
+   return (
   <article key={id}>
   <h3>Name: {name}</h3>
   {description !== null ? (
@@ -18,11 +24,11 @@ const Repo = ({ name, description, language, forks_count, created_at, id }) => (
   )}
   <p>Forks: {forks_count}</p>
   <p>{created_at}</p>
-  <Link to={`/repos/${id}`} className="button muted-button">
+  <Link onClick={() => setCookie(id)} to={`/repos/${id}`} className="button muted-button" state={{id: id}}>
     View Repo
   </Link>
 </article>
-)
+)}
 
 // Repo.propTypes = {
 //   language: PropTypes.string.isRequired,

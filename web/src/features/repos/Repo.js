@@ -23,7 +23,6 @@ const Repo = ({ name, description, language, forks_count, created_at, id }) => {
     <p>No languages</p>
   )}
   <p>Forks: {forks_count}</p>
-  <p>{created_at}</p>
   <Link onClick={() => setCookie(id)} to={`/repos/${id}`} className="button muted-button" state={{id: id}}>
     View Repo
   </Link>

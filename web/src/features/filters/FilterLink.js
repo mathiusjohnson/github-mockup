@@ -8,7 +8,4 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = { setVisibilityFilter }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Link)
+export default connect(mapStateToProps, mapDispatchToProps)(Link)

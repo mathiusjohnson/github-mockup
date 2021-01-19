@@ -1,35 +1,35 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import Repo from './RepoItem'
-import { fetchRepos } from './repoSlice';
-import { connect } from "react-redux";
-import LanguageList from '../buttons/fetchLanguages';
-import Filter from '../filters/Footer';
-import { saveState } from '../../helpers/localStorage';
+import { fetchRepos } from './repoSlice'
+import { connect } from 'react-redux'
+import LanguageList from '../buttons/fetchLanguages'
+import Filter from '../filters/Footer'
+import { saveState } from '../../helpers/localStorage'
 
-function RepoList ({repos}) {
-  const dispatch = useDispatch();
+function RepoList({ repos }) {
+  const dispatch = useDispatch()
 
-  let content;
+  let content
 
-  const repoStatus = useSelector((state) => state.repos.status);
-  const error = useSelector((state) => state.repos.error);
+  const repoStatus = useSelector(state => state.repos.status)
+  const error = useSelector(state => state.repos.error)
 
   useEffect(() => {
     if (repoStatus === 'idle') {
-      dispatch(fetchRepos());
+      dispatch(fetchRepos())
     }
-  }, [repoStatus, dispatch]);
+  }, [repoStatus, dispatch])
 
   if (repoStatus === 'loading') {
-    content = <div className="loader">Loading...</div>;
+    content = <div className="loader">Loading...</div>
   } else if (repoStatus === 'succeeded') {
     content = repos
   } else if (repoStatus === 'error') {
-    content = <div>{error}</div>;
+    content = <div>{error}</div>
   }
 
-  content = repos;
+  content = repos
   return (
     <div>
       <LanguageList />
@@ -38,7 +38,6 @@ function RepoList ({repos}) {
         {content.map(repo => (
           <Repo key={repo.id} {...repo} />
         ))}
-
       </ul>
     </div>
   )

@@ -8,7 +8,4 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = { setCurrentRepo }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Repo)
+export default connect(mapStateToProps, mapDispatchToProps)(Repo)

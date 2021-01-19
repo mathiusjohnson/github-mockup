@@ -1,11 +1,10 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux'
 import FilterLink from './FilterLink'
 import { VisibilityFilters, addVisibilityFilter } from './filtersSlice'
 import { selectAllLanguages } from '../buttons/languagesSlice'
-const Filter = (
-) => {
-  const dispatch = useDispatch();
+const Filter = () => {
+  const dispatch = useDispatch()
 
   const languages = useSelector(selectAllLanguages)
 
@@ -16,19 +15,19 @@ const Filter = (
   const filterKeys = Object.keys(VisibilityFilters)
 
   const renderedFilters = filterKeys.map((filter, index) => {
-      return (
-        <FilterLink key={index} filter={VisibilityFilters[filter]}>{filter}</FilterLink>
-      )
-    })
+    return (
+      <FilterLink key={index} filter={VisibilityFilters[filter]}>
+        {filter}
+      </FilterLink>
+    )
+  })
 
   return (
     <div>
       <span>Show: </span>
-        {renderedFilters}
+      {renderedFilters}
     </div>
   )
 }
 
 export default Filter
-
-

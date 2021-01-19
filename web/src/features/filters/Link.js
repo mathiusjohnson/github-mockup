@@ -1,19 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Link = ({ active, children, setVisibilityFilter, filter }) =>  {
-  return(
-  <button
-    onClick={() => setVisibilityFilter(filter)}
-    disabled={active}
-    style={{
-      marginLeft: '4px'
-    }}
-  >
-    {children}
-  </button>
-)
-  }
+const Link = ({ active, children, setVisibilityFilter, filter }) => {
+  return (
+    <button
+      onClick={() => setVisibilityFilter(filter)}
+      disabled={active}
+      style={{
+        marginLeft: '4px'
+      }}
+    >
+      {children}
+    </button>
+  )
+}
 
 // Link.propTypes = {
 //   active: PropTypes.bool.isRequired,

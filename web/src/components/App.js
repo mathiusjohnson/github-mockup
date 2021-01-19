@@ -1,13 +1,13 @@
-import React from 'react';
+import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
-} from 'react-router-dom';
+  Redirect
+} from 'react-router-dom'
 
-import SingleRepoPage from '../features/repos/singleRepoPage';
-import { VisibleRepoList } from '../features/repos/VisibleRepoList';
+import SingleRepoPage from '../features/repos/singleRepoPage'
+import { VisibleRepoList } from '../features/repos/VisibleRepoList'
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
         </Switch>
       </div>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

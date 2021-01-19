@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import CommitList from './components/CommitList';
-import { loadState } from '../../helpers/localStorage';
-import axios from 'axios';
-const ReactMarkdown = require('react-markdown')
+import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import CommitList from './components/CommitList'
+import { loadState } from '../../helpers/localStorage'
+import axios from 'axios'
+import ReactMarkdown from 'react-markdown'
 
-function SinglePostPage({repos}) {
-  const [readMe, setReadMe] = useState({});
+function SinglePostPage() {
+  const [readMe, setReadMe] = useState({})
 
   const repo = loadState()
 
-  const readmeURL = `https://raw.githubusercontent.com/${repo.full_name}/master/README.md`;
-
+  const readmeURL = `https://raw.githubusercontent.com/${repo.full_name}/master/README.md`
 
   useEffect(() => {
-    axios.get(readmeURL)
+    axios
+      .get(readmeURL)
       .then(res => {
-        setReadMe(res.data);
+        setReadMe(res.data)
       })
-      .catch(err => console.log("error in axios call: ", err))
-  },)
+      .catch(err => console.log('error in axios call: ', err))
+  })
 
   if (!repo) {
     return (
@@ -28,7 +28,7 @@ function SinglePostPage({repos}) {
         <h2>Repo not found!</h2>
         <Link to="/repos">Back</Link>
       </section>
-    );
+    )
   }
 
   const repoName = repo.name
@@ -36,7 +36,7 @@ function SinglePostPage({repos}) {
   return (
     <section>
       <article className="post">
-      <CommitList repoName={repoName} />
+        <CommitList repoName={repoName} />
 
         <h2>{repo.title}</h2>
 
@@ -47,11 +47,11 @@ function SinglePostPage({repos}) {
         <Link to="/repos">Back</Link>
       </article>
     </section>
-  );
+  )
 }
 
 const mapStateToProps = state => ({
   repos: state.repos
-});
+})
 
-export default connect(mapStateToProps)(SinglePostPage);
+export default connect(mapStateToProps)(SinglePostPage)

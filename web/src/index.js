@@ -3,11 +3,10 @@ import { render } from 'react-dom'
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import App from './components/App'
-import rootReducer from './reducers'
-import { loadState, saveState } from './helpers/localStorage';
-import throttle from 'lodash/throttle';
+import rootReducer from './reducers/index'
+import { loadState } from './helpers/localStorage'
 
-const persistedState = loadState();
+const persistedState = loadState()
 
 const store = configureStore({
   reducer: rootReducer,

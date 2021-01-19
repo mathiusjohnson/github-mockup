@@ -42,6 +42,8 @@ function SinglePostPage({repos}) {
 
         <br />
         <ReactMarkdown source={readMe} />
+        <br />
+        <br />
         <Link to="/repos">Back</Link>
       </article>
     </section>

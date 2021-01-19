@@ -18,10 +18,29 @@ const initialState = reposAdapter.getInitialState({
   currentRepo: {}
 })
 
-export const fetchRepos = createAsyncThunk('repos/fetchRepos', async () => {
-  const response = await axios.get(url)
-  return response.data
-})
+interface repoData {
+  id: number,
+  name: string,
+  description: string,
+  // ...
+}
+
+export const fetchRepos = createAsyncThunk('repos/fetchRepos',
+  async () => {
+    const response = await axios.get(url)
+    return response.data as repoData
+  },
+  // {
+  //   condition: ({ getState }) => {
+  //     const { repos } = getState()
+  //     const fetchStatus = repos.status
+  //     if (fetchStatus === 'fulfilled' || fetchStatus === 'loading') {
+  //       // Already fetched or in progress, don't need to re-fetch
+  //       return false
+  //     }
+  //   }
+  // }
+)
 
 const reposSlice = createSlice({
   name: 'repos',

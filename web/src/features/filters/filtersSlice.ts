@@ -7,7 +7,14 @@ import axios from 'axios'
 
 const url = 'http://localhost:4000/languages'
 
-const languagesAdapter = createEntityAdapter({
+interface languageData {
+  id: number,
+  language: string,
+  // ...
+}
+
+
+const languagesAdapter = createEntityAdapter<languageData>({
   selectId: language => language.id
 })
 
@@ -20,7 +27,7 @@ export const fetchLanguages = createAsyncThunk(
   'languages/fetchLanguages',
   async () => {
     const response = await axios.get(url)
-    return response.data
+    return response.data as languageData
   }
 )
 

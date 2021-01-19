@@ -4,14 +4,12 @@ import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import App from './components/App'
 import rootReducer from './reducers/index'
-import { loadState } from './helpers/localStorage'
+import store from './app/store'
 
-const persistedState = loadState()
 
-const store = configureStore({
-  reducer: rootReducer,
-  persistedState
-})
+// const store = configureStore({
+//   reducer: rootReducer,
+// })
 
 render(
   <Provider store={store}>

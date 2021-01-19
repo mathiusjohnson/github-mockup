@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CommitList from './components/CommitList';
-import { loadState } from '../../helpers/localStorage';
+import { loadState, saveState } from '../../helpers/localStorage';
 import { selectRepoById } from './repoSlice';
 
 

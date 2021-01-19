@@ -24,7 +24,9 @@ languages.get('/', async (req, res) => {
     for (const key in data) {
       if (Object.hasOwnProperty.call(data, key)) {
         const repo = data[key];
-
+        if (repo.fork !== false) {
+          continue;
+        }
         if (repo.language === null) {
           continue;
         }

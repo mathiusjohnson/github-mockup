@@ -6,13 +6,17 @@ export const getAPI = () => {
     auth: "0acfb7a6a3c3b0f4891e6fb997a8e095ae97a32f",
   });
 
-    octokit.repos
-      .listForOrg({
-        org: "silverorange",
-        type: "public",
-      })
-      .then(({ data } : {data:any}) => {
-        data = data.filter((repo: {fork: boolean;}) => repo.fork === false)
-      });
+  octokit.repos
+
+    .listForOrg({
+      org: "silverorange",
+      type: "public",
+    })
+
+    .then(({ data } : {data: any}) => {
+      data = data.filter((repo: {fork: boolean;}) => repo.fork === false)
+      console.log("data in index: ", data[0].id);
+      return data;
+    });
 
 }

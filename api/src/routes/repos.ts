@@ -1,9 +1,12 @@
 import { Router } from 'express';
 import yourJson from '../../data/repos.json';
-
-const { Octokit } = require("@octokit/rest");
+import { getAPI } from '../db/index';
+import { Octokit } from '@octokit/rest'
 
 export const repos = Router();
+
+console.log(typeof getAPI);
+
 console.log("this repo file works");
 repos.get('/', async (req, res) => {
   res.header('Cache-Control', 'no-store');
@@ -17,7 +20,7 @@ repos.get('/', async (req, res) => {
       org: "silverorange",
       type: "public",
     })
-    .then(({ data }) => {
+    .then(({ data }: {data:any}) => {
       data = data.filter((repo: {fork: boolean;}) => repo.fork === false)
       for (const repository of yourJson) {
           if (repository.fork === false) {

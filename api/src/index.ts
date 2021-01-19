@@ -3,6 +3,8 @@ import { createServer } from 'http';
 import { config } from './config';
 import { app } from './app';
 
+require('dotenv').config();
+
 const debug = createDebug('api');
 
 /**

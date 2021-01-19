@@ -14,7 +14,7 @@ const corsOptions = {
 export const app = express();
 
 // Routes. Note these will fail about 25% due to "terrible" middleware.
-app.use('/repos', terrible(), cors(corsOptions), repos);
+app.use('/repos', cors(corsOptions), repos);
 app.use('/languages', terrible(), cors(corsOptions), languages);
 
 // error handling middleware should be loaded after the loading the routes

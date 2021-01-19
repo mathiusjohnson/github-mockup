@@ -46,18 +46,18 @@ const reposSlice = createSlice({
   name: 'repos',
   initialState,
   reducers: {},
-  extraReducers: {
-    [fetchRepos.pending]: (state, action) => {
+  extraReducers: builder => {
+    builder.addCase(fetchRepos.pending, (state, action) => {
       state.status = 'loading'
-    },
-    [fetchRepos.fulfilled]: (state, action) => {
+    }),
+    builder.addCase(fetchRepos.fulfilled, (state, action) => {
       state.status = 'succeeded'
       reposAdapter.upsertMany(state, action.payload)
-    },
-    [fetchRepos.rejected]: (state, action) => {
+    }),
+    builder.addCase(fetchRepos.rejected, (state, action) => {
       state.status = 'failed'
       state.error = action.error.message
-    }
+    })
   }
 })
 
@@ -71,7 +71,7 @@ export const {
 
 export const selectCurrentRepo = createSelector([
   selectAllRepos,
-  state => {
+  (  state: unknown) => {
     return state
   }
 ])

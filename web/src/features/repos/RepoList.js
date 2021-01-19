@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Repo from './Repo'
+import Repo from './RepoItem'
 import { fetchRepos } from './repoSlice';
 import { connect } from "react-redux";
 import LanguageList from '../buttons/fetchLanguages';

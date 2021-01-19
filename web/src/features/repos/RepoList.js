@@ -5,6 +5,7 @@ import { fetchRepos } from './repoSlice';
 import { connect } from "react-redux";
 import LanguageList from '../buttons/fetchLanguages';
 import Filter from '../filters/Footer';
+import { saveState } from '../../helpers/localStorage';
 
 function RepoList ({repos}) {
   const dispatch = useDispatch();
@@ -29,7 +30,6 @@ function RepoList ({repos}) {
   }
 
   content = repos;
-
   return (
     <div>
       <LanguageList />

@@ -8,17 +8,9 @@ import { selectRepoById } from './repoSlice';
 
 function SinglePostPage({repos}) {
   // const repos =
-  const repoId = loadState()
-  console.log("persisted: ", repoId);
-  // const repos = useSelector((state) => state.repos)
-  console.log(repos);
-  const repo = useSelector((state)=> selectRepoById(state, repoId))
+  const repo = loadState()
+  console.log("persisted: ", repo);
 
-  // const currentRepo = useSelector((state) => selectCurrentRepo(state))
-
-
-
-  // console.log(repo);
   if (!repo) {
     return (
       <section>

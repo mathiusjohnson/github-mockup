@@ -14,10 +14,6 @@ const store = configureStore({
   persistedState
 })
 
-store.subscribe(throttle(() => {
-  saveState(store.getState())
-}, 1000))
-
 render(
   <Provider store={store}>
     <App />

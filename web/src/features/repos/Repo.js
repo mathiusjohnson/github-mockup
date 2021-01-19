@@ -1,38 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { saveState } from '../../helpers/localStorage';
-import { selectRepoById } from './repoSlice';
-import { useSelector } from 'react-redux';
+import { loadState, saveState } from '../../helpers/localStorage';
 
-const Repo = ({ name, description, language, forks_count, created_at, id }) => {
 
-  let repoId;
-  const SetCookie = (id) => {
-    // console.log("id in cookie fn:", id);
-    repoId = id
-    saveState(id)
+const Repo = (props) => {
+  console.log(props);
+  const setCookie = (id) => {
+    console.log("id in cookie fn:", id);
+    saveState(props);
   }
 
-  const repo = useSelector((state) => selectRepoById(state, repoId));
-  saveState(repo)
-
    return (
-  <article key={id}>
-  <h3>Name: {name}</h3>
-  {description !== null ? (
+  <article key={props.id}>
+  <h3>Name: {props.name}</h3>
+  {props.description !== null ? (
     <p className="repo-content">
-      Description: {description.substring(0, 100)}
+      Description: {props.description.substring(0, 100)}
     </p>
   ) : (
     <p>no description</p>
   )}
-  {language !== undefined ? (
-    <p>Language:{language}</p>
+  {props.language !== undefined ? (
+    <p>Language:{props.language}</p>
   ) : (
     <p>No languages</p>
   )}
-  <p>Forks: {forks_count}</p>
-  <Link onClick={() => SetCookie(id)} to={`/repos/${id}`} className="button muted-button" state={{id: id}}>
+  <p>Forks: {props.forks_count}</p>
+  <Link onClick={() => setCookie(props.id)} to={`/repos/${props.id}`} className="button muted-button" state={{id: props.id}}>
     View Repo
   </Link>
 </article>

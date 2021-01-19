@@ -6,10 +6,8 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-import Footer from '../features/filters/Footer';
 import SingleRepoPage from '../features/repos/singleRepoPage';
 import { VisibleRepoList } from '../features/repos/VisibleRepoList';
-import LanguageList from '../features/buttons/fetchLanguages';
 
 function App() {
   return (

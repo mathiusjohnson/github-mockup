@@ -25,12 +25,7 @@ export const fetchRepos = createAsyncThunk('repos/fetchRepos', async () => {
 const reposSlice = createSlice({
   name: 'repos',
   initialState,
-  reducers: {
-    setCurrentRepo(state, action) {
-      console.log(state, action.payload);
-      return action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: {
     [fetchRepos.pending]: (state, action) => {
       state.status = 'loading';
@@ -46,8 +41,6 @@ const reposSlice = createSlice({
   },
 });
 
-export const { setCurrentRepo } = reposSlice.actions;
-
 export default reposSlice.reducer;
 
 export const {
@@ -58,7 +51,6 @@ export const {
 
 export const selectCurrentRepo = createSelector(
   [selectAllRepos, (state) => {
-    // console.log(state);
     return state;
   }],
 )

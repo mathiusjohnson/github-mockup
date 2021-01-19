@@ -1,15 +1,26 @@
-import React from 'react';
-import { useSelector, connect } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CommitList from './components/CommitList';
-import { loadState, saveState } from '../../helpers/localStorage';
-import { selectRepoById } from './repoSlice';
-
+import { loadState } from '../../helpers/localStorage';
+import axios from 'axios';
+const ReactMarkdown = require('react-markdown')
 
 function SinglePostPage({repos}) {
-  // const repos =
+  const [readMe, setReadMe] = useState({});
+
   const repo = loadState()
-  console.log("persisted: ", repo);
+
+  const readmeURL = `https://raw.githubusercontent.com/${repo.full_name}/master/README.md`;
+
+
+  useEffect(() => {
+    axios.get(readmeURL)
+      .then(res => {
+        setReadMe(res.data);
+      })
+      .catch(err => console.log("error in axios call: ", err))
+  },)
 
   if (!repo) {
     return (
@@ -20,7 +31,6 @@ function SinglePostPage({repos}) {
     );
   }
 
-  const readmeURL = `https://raw.githubusercontent.com/${repo.full_name}/master/README.md`;
   const repoName = repo.name
 
   return (
@@ -29,10 +39,9 @@ function SinglePostPage({repos}) {
       <CommitList repoName={repoName} />
 
         <h2>{repo.title}</h2>
-        <a href={readmeURL} target="_blank" rel="noopener noreferrer" >
-          README
-        </a>
+
         <br />
+        <ReactMarkdown source={readMe} />
         <Link to="/repos">Back</Link>
       </article>
     </section>

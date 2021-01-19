@@ -18,7 +18,7 @@ repos.get('/', async (req, res) => {
       type: "public",
     })
     .then(({ data }) => {
-      data = data.filter((repo) => repo.fork === false)
+      data = data.filter((repo: {fork: boolean;}) => repo.fork === false)
       for (const repository of yourJson) {
           if (repository.fork === false) {
             data.push(repository);

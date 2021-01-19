@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { loadState, saveState } from '../../helpers/localStorage';
+import { saveState } from '../../helpers/localStorage';
 
 
 const Repo = (props) => {
-  console.log(props);
+
   const setCookie = (id) => {
     console.log("id in cookie fn:", id);
     saveState(props);

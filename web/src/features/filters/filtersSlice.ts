@@ -1,31 +1,53 @@
 import {
   createSlice,
   createAsyncThunk,
-  createEntityAdapter
+  createEntityAdapter,
+  PayloadAction,
+  EntityId
 } from '@reduxjs/toolkit'
-import axios from 'axios'
+import axios from 'axios';
 
 const url = 'http://localhost:4000/languages'
 
-interface languageData {
-  id: number,
-  language: string,
+interface LanguagesState {
+  languages: Language[];
+  status: 'idle' | 'pending';
+  error: string | null;
+}
+
+// interface languageData {
+//   [key: string]: unknown,
+//   payload: languageData[] | Record<EntityId, languageData>; type: string;
+//   id: number,
+//   language: string,
+//   status: string,
+//   error: string | undefined | undefined
+// }
+
+interface MyKnownError {
+  errorMessage: string
   // ...
 }
 
-
-const languagesAdapter = createEntityAdapter<languageData>({
+const languagesAdapter = createEntityAdapter<LanguagesState>({
   selectId: language => language.id
 })
 
-const initialState = languagesAdapter.getInitialState({
+const initialState: LanguagesState = languagesAdapter.getInitialState({
+  languages: [],
   status: 'idle',
   error: null
 })
 
-export const fetchLanguages = createAsyncThunk(
+export const fetchLanguages = createAsyncThunk<  {
+  languageData: unknown,
+  rejectValue: MyKnownError
+}>(
   'languages/fetchLanguages',
-  async () => {
+  async (_, thunkAPI) => {
+    if (thunkAPI.getState().loading !== 'pending') {
+      return;
+    }
     const response = await axios.get(url)
     return response.data as languageData
   }
@@ -35,18 +57,20 @@ export const languagesReducer = createSlice({
   name: 'languages',
   initialState,
   reducers: {},
-  extraReducers: {
-    [fetchLanguages.pending]: (state, action) => {
+  extraReducers: builder => {
+    builder.addCase(fetchLanguages.pending, (state) => {
       state.status = 'loading'
-    },
-    [fetchLanguages.fulfilled]: (state, action) => {
+      return state;
+    }),
+    builder.addCase(fetchLanguages.fulfilled, (state, action: PayloadAction<languageData>) => {
       state.status = 'succeeded'
       languagesAdapter.upsertMany(state, action.payload)
-    },
-    [fetchLanguages.rejected]: (state, action) => {
+      return state;
+    }),
+    builder.addMatcher(fetchLanguages.rejected, (state, action: PayloadAction<languageData>) => {
       state.status = 'failed'
       state.error = action.error.message
-    }
+    })
   }
 })
 

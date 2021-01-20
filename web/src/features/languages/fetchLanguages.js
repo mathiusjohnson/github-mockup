@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchLanguages } from '../filters/languagesSlice'
+import { fetchLanguages } from './languagesSlice'
 // import Button from './Button';
 
 export default function LanguageList({ languages }) {

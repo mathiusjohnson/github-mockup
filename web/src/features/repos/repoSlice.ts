@@ -25,6 +25,8 @@ interface repoData {
   // ...
 }
 
+/* eslint-disable */
+
 export const fetchRepos = createAsyncThunk('repos/fetchRepos',
   async () => {
     const response = await axios.get(url)
@@ -41,6 +43,7 @@ export const fetchRepos = createAsyncThunk('repos/fetchRepos',
   //   }
   // }
 )
+/* eslint-disable */
 
 const reposSlice = createSlice({
   name: 'repos',

@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {createAsyncThunk, createEntityAdapter, createSlice} from '@reduxjs/toolkit';
 import {getLanguages, Language} from './languagesAPI';
 
 // Requesting all languages, with loading state, and only one request at a time
@@ -15,12 +15,18 @@ interface Languages {
   language: string
 }
 
-const initialState: languagesState = {
+const languagesAdapter = createEntityAdapter<Languages>({
+  selectId: language => language.id
+})
+
+const initialState: languagesState = languagesAdapter.getInitialState({
   entities: {} as Languages,
   ids: [],
   status: 'idle',
   error: null,
-};
+});
+
+/* eslint-disable */
 
 export const fetchLanguages = createAsyncThunk<
   // Return type of the payload creator
@@ -30,16 +36,19 @@ export const fetchLanguages = createAsyncThunk<
   // Types for ThunkAPI
   {state: languagesState}
 >('languages/fetch', async (_, thunkAPI) => {
+  // eslint-disable-line no-unused-expressions
   async () => {
     if (thunkAPI.getState().status !== 'idle') {
       return;
     }
   };
+
   const response = await getLanguages();
   console.log("languages: ", response.languages);
 
   return response.languages;
-});
+})();
+/* eslint-disable */
 
 export const languagesSlice = createSlice({
   name: 'languages',
@@ -68,3 +77,9 @@ export const languagesSlice = createSlice({
 });
 
 export default languagesSlice.reducer
+
+export const { selectAll: selectAllLanguages } = languagesAdapter.getSelectors(
+  state => {
+    return state.languages
+  }
+)

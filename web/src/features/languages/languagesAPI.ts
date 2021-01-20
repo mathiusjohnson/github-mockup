@@ -9,14 +9,14 @@ export interface Language {
 }
 
 interface GetLanguagesResult {
-  languages: Language;
+  languages: Language[];
 }
 
 export async function getLanguages(): Promise<GetLanguagesResult> {
   const url = 'http://localhost:4000/languages'
 
   const languagesResponse = await axios.get<{data: Language[]}>(url);
-  console.log(languagesResponse.data);
+  console.log("data: ", languagesResponse.data);
   return {
 
     languages: languagesResponse.data,

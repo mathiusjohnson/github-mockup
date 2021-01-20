@@ -2,7 +2,9 @@ import {
   createSlice,
 } from '@reduxjs/toolkit'
 
-export const VisibilityFilters = {
+interface IVisibilityFilters { SHOW_ALL: string; }
+
+export const VisibilityFilters: IVisibilityFilters = {
   SHOW_ALL: 'SHOW_ALL'
 }
 
@@ -14,9 +16,11 @@ const filtersSlice = createSlice({
       return action.payload
     },
     addVisibilityFilter(state, action) {
-      const type = action.payload.language.toUpperCase()
+      const type: string = action.payload.language.toUpperCase()
       const filter = action.payload.language
-      VisibilityFilters[type] = filter
+
+
+      VisibilityFilters[type as keyof IVisibilityFilters] = filter
       return state
     }
   }

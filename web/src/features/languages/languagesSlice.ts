@@ -4,14 +4,21 @@ import {getLanguages, Language} from './languagesAPI';
 // Requesting all languages, with loading state, and only one request at a time
 
 interface languagesState {
-  languages: Language[];
-  loading: 'idle' | 'pending';
+  entities: Languages;
+  ids: Array<number> [];
+  status: 'idle';
   error: string | null;
 }
 
+interface Languages {
+  id: number,
+  language: string
+}
+
 const initialState: languagesState = {
-  languages: [] as Language[],
-  loading: 'idle',
+  entities: {} as Languages,
+  ids: [],
+  status: 'idle',
   error: null,
 };
 
@@ -24,11 +31,13 @@ export const fetchLanguages = createAsyncThunk<
   {state: languagesState}
 >('languages/fetch', async (_, thunkAPI) => {
   async () => {
-    if (thunkAPI.getState().loading !== 'pending') {
+    if (thunkAPI.getState().status !== 'idle') {
       return;
     }
   };
   const response = await getLanguages();
+  console.log("languages: ", response.languages);
+
   return response.languages;
 });
 
@@ -39,21 +48,23 @@ export const languagesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchLanguages.pending, (state) => {
-        if (state.loading === 'idle') {
-          state.loading = 'pending';
+        if (state.status === 'idle') {
+          state.status = 'idle';
         }
       })
       .addCase(fetchLanguages.fulfilled, (state, action) => {
-        if (state.loading === 'pending') {
-          state.loading = 'idle';
+        if (state.status === 'idle') {
+          state.status = 'idle';
         }
         state.languages = action.payload;
       })
       .addCase(fetchLanguages.rejected, (state, action) => {
-        if (state.loading === 'pending') {
-          state.loading = 'idle';
+        if (state.status === 'idle') {
+          state.status = 'idle';
           state.error = action.error.message || null;
         }
       });
   },
 });
+
+export default languagesSlice.reducer

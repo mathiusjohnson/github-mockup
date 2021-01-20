@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Repo from './RepoItem'
+import Repo from './RepoItem';
 import { fetchRepos } from './repoSlice';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import LanguageList from '../buttons/fetchLanguages';
 import Filter from '../filters/Footer';
-import { saveState } from '../../helpers/localStorage';
 
-function RepoList ({repos}) {
+function RepoList({ repos }) {
   const dispatch = useDispatch();
 
   let content;
@@ -24,7 +23,7 @@ function RepoList ({repos}) {
   if (repoStatus === 'loading') {
     content = <div className="loader">Loading...</div>;
   } else if (repoStatus === 'succeeded') {
-    content = repos
+    content = repos;
   } else if (repoStatus === 'error') {
     content = <div>{error}</div>;
   }
@@ -35,13 +34,12 @@ function RepoList ({repos}) {
       <LanguageList />
       <Filter />
       <ul>
-        {content.map(repo => (
+        {content.map((repo) => (
           <Repo key={repo.id} {...repo} />
         ))}
-
       </ul>
     </div>
-  )
+  );
 }
 
-export default connect(null)(RepoList)
+export default connect(null)(RepoList);

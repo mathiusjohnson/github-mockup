@@ -16,7 +16,7 @@ const selectVisibleRepos = createSelector(
     });
 
     for (const language in VisibilityFilters) {
-        const filteredLang = VisibilityFilters[language];
+      const filteredLang = VisibilityFilters[language];
       if (filter === 'SHOW_ALL') {
         return repoArr;
       }

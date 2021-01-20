@@ -8,19 +8,21 @@ import axios from 'axios';
 const url = 'http://localhost:4000/languages';
 
 const languagesAdapter = createEntityAdapter({
-	selectId: (language) => language.id,
-
-})
+  selectId: (language) => language.id,
+});
 
 const initialState = languagesAdapter.getInitialState({
   status: 'idle',
   error: null,
 });
 
-export const fetchLanguages = createAsyncThunk('languages/fetchLanguages', async () => {
-  const response = await axios.get(url);
-  return response.data;
-});
+export const fetchLanguages = createAsyncThunk(
+  'languages/fetchLanguages',
+  async () => {
+    const response = await axios.get(url);
+    return response.data;
+  }
+);
 
 const languagesSlice = createSlice({
   name: 'languages',
@@ -43,7 +45,8 @@ const languagesSlice = createSlice({
 
 export default languagesSlice.reducer;
 
-export const {
-  selectAll: selectAllLanguages,
-} = languagesAdapter.getSelectors((state) => {
-  return state.languages });
+export const { selectAll: selectAllLanguages } = languagesAdapter.getSelectors(
+  (state) => {
+    return state.languages;
+  }
+);

@@ -1,25 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
 
-const Link = ({ active, children, setVisibilityFilter, filter }) =>  {
-  return(
-  <button
-    onClick={() => setVisibilityFilter(filter)}
-    disabled={active}
-    style={{
-      marginLeft: '4px'
-    }}
-  >
-    {children}
-  </button>
-)
-  }
+const Link = ({ active, children, setVisibilityFilter, filter }) => {
+  return (
+    <button
+      onClick={() => setVisibilityFilter(filter)}
+      disabled={active}
+      style={{
+        marginLeft: '4px',
+      }}
+    >
+      {children}
+    </button>
+  );
+};
 
-// Link.propTypes = {
-//   active: PropTypes.bool.isRequired,
-//   children: PropTypes.node.isRequired,
-//   setVisibilityFilter: PropTypes.func.isRequired,
-//   filter: PropTypes.string.isRequired
-// }
-
-export default Link
+export default Link;

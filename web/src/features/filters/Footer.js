@@ -1,34 +1,33 @@
-import React from 'react'
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import FilterLink from './FilterLink'
-import { VisibilityFilters, addVisibilityFilter } from './filtersSlice'
-import { selectAllLanguages } from '../buttons/languagesSlice'
-const Filter = (
-) => {
+import FilterLink from './FilterLink';
+import { VisibilityFilters, addVisibilityFilter } from './filtersSlice';
+import { selectAllLanguages } from '../buttons/languagesSlice';
+const Filter = () => {
   const dispatch = useDispatch();
 
-  const languages = useSelector(selectAllLanguages)
+  const languages = useSelector(selectAllLanguages);
 
-  languages.forEach(language => {
-    dispatch(addVisibilityFilter(language))
-  })
+  languages.forEach((language) => {
+    dispatch(addVisibilityFilter(language));
+  });
 
-  const filterKeys = Object.keys(VisibilityFilters)
+  const filterKeys = Object.keys(VisibilityFilters);
 
   const renderedFilters = filterKeys.map((filter, index) => {
-      return (
-        <FilterLink key={index} filter={VisibilityFilters[filter]}>{filter}</FilterLink>
-      )
-    })
+    return (
+      <FilterLink key={index} filter={VisibilityFilters[filter]}>
+        {filter}
+      </FilterLink>
+    );
+  });
 
   return (
     <div>
       <span>Show: </span>
-        {renderedFilters}
+      {renderedFilters}
     </div>
-  )
-}
+  );
+};
 
-export default Filter
-
-
+export default Filter;

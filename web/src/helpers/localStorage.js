@@ -8,14 +8,14 @@ export const loadState = () => {
   } catch (err) {
     return undefined;
   }
-}
+};
 
-export const saveState = (state) =>{
-  console.log("state to be saved: ", state);
+export const saveState = (state) => {
+  console.log('state to be saved: ', state);
   try {
     const serializedState = JSON.stringify(state);
-    localStorage.setItem('state', serializedState)
+    localStorage.setItem('state', serializedState);
   } catch (err) {
     // Ignore write errors.
   }
-}
+};

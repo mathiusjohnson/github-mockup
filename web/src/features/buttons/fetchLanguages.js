@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchLanguages, selectAllLanguages } from './languagesSlice';
-// import Button from './Button';
+import { fetchLanguages } from './languagesSlice';
 
-
-export default function LanguageList ({languages}) {
-
+export default function LanguageList({ languages }) {
   const dispatch = useDispatch();
 
   let content;
@@ -22,14 +19,10 @@ export default function LanguageList ({languages}) {
   if (languageStatus === 'loading') {
     content = <div className="loader">Loading...</div>;
   } else if (languageStatus === 'succeeded') {
-    content = languages
+    content = languages;
   } else if (languageStatus === 'error') {
     content = <div>{error}</div>;
   }
 
-  return (
-    <div>
-      {content}
-    </div>
-  )
+  return <div>{content}</div>;
 }

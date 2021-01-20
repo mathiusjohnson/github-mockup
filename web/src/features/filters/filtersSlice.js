@@ -8,18 +8,21 @@ import axios from 'axios';
 const url = 'http://localhost:4000/languages';
 
 const languagesAdapter = createEntityAdapter({
-	selectId: (language) => language.id,
-})
+  selectId: (language) => language.id,
+});
 
 const initialState = languagesAdapter.getInitialState({
   status: 'idle',
   error: null,
 });
 
-export const fetchLanguages = createAsyncThunk('languages/fetchLanguages', async () => {
-  const response = await axios.get(url);
-  return response.data;
-});
+export const fetchLanguages = createAsyncThunk(
+  'languages/fetchLanguages',
+  async () => {
+    const response = await axios.get(url);
+    return response.data;
+  }
+);
 
 export const languagesReducer = createSlice({
   name: 'languages',
@@ -40,31 +43,35 @@ export const languagesReducer = createSlice({
   },
 });
 
-export const {
-  selectAll: selectAllLanguages,
-} = languagesAdapter.getSelectors((state) => {
-  return state.languages });
+export const { selectAll: selectAllLanguages } = languagesAdapter.getSelectors(
+  (state) => {
+    return state.languages;
+  }
+);
 
 export const VisibilityFilters = {
   SHOW_ALL: 'SHOW_ALL',
-}
+};
 
 const filtersSlice = createSlice({
   name: 'visibilityFilters',
   initialState: VisibilityFilters.SHOW_ALL,
   reducers: {
     setVisibilityFilter(state, action) {
-      return action.payload
+      return action.payload;
     },
     addVisibilityFilter(state, action) {
-      const type = action.payload.language.toUpperCase()
+      const type = action.payload.language.toUpperCase();
       const filter = action.payload.language;
       VisibilityFilters[type] = filter;
       return state;
-    }
-  }
-})
+    },
+  },
+});
 
-export const { setVisibilityFilter, addVisibilityFilter } = filtersSlice.actions
+export const {
+  setVisibilityFilter,
+  addVisibilityFilter,
+} = filtersSlice.actions;
 
-export default filtersSlice.reducer
+export default filtersSlice.reducer;

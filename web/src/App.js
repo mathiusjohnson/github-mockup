@@ -6,8 +6,8 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-import SingleRepoPage from '../features/repos/singleRepoPage';
-import { VisibleRepoList } from '../features/repos/VisibleRepoList';
+import SingleRepoPage from './features/repos/singleRepoPage';
+import { VisibleRepoList } from './features/repos/VisibleRepoList';
 
 function App() {
   return (

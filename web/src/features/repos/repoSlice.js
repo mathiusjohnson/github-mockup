@@ -1,7 +1,8 @@
 import {
   createSlice,
   createAsyncThunk,
-  createEntityAdapter,  createSelector,
+  createEntityAdapter,
+  createSelector,
 } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -49,8 +50,9 @@ export const {
   selectIds: selectRepoIds,
 } = reposAdapter.getSelectors((state) => state.repos);
 
-export const selectCurrentRepo = createSelector(
-  [selectAllRepos, (state) => {
+export const selectCurrentRepo = createSelector([
+  selectAllRepos,
+  (state) => {
     return state;
-  }],
-)
+  },
+]);

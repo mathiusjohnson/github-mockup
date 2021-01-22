@@ -8,10 +8,11 @@ interface languagesState {
   error: string | null;
   pending: string | null;
   fulfilled: string | null;
+  rejected: string | null
 }
 
 interface Languages {
-    [key: string]: Language
+    [key: string]: Language,
 }
 
 const languagesAdapter = createEntityAdapter<Language>({
@@ -24,7 +25,8 @@ const initialState: languagesState = languagesAdapter.getInitialState({
   status: 'idle',
   error: null,
   pending: null,
-  fulfilled: null
+  fulfilled: null,
+  rejected: null,
 }) as languagesState;
 
 /* eslint-disable */

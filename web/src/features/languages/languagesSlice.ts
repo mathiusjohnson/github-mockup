@@ -1,21 +1,20 @@
 import {createAsyncThunk, createEntityAdapter, createSlice} from '@reduxjs/toolkit';
 import {getLanguages, Language} from './languagesAPI';
 
-// Requesting all languages, with loading state, and only one request at a time
-
 interface languagesState {
   entities: Languages;
   ids: Array<number> [];
-  status: 'idle';
+  status: 'idle' | 'pending' | 'fulfilled' | 'rejected';
   error: string | null;
+  pending: string | null;
+  fulfilled: string | null;
 }
 
 interface Languages {
-  id: number,
-  language: string
+    [key: string]: Language
 }
 
-const languagesAdapter = createEntityAdapter<Languages>({
+const languagesAdapter = createEntityAdapter<Language>({
   selectId: language => language.id
 })
 
@@ -24,19 +23,21 @@ const initialState: languagesState = languagesAdapter.getInitialState({
   ids: [],
   status: 'idle',
   error: null,
-});
+  pending: null,
+  fulfilled: null
+}) as languagesState;
 
 /* eslint-disable */
 
 export const fetchLanguages = createAsyncThunk<
   // Return type of the payload creator
-  Language[],
+  Languages,
+  // pending: string | null,
+
   // First argument to the payload creator (provide void if there isn't one)
   void,
-  // Types for ThunkAPI
   {state: languagesState}
 >('languages/fetch', async (_, thunkAPI) => {
-  // eslint-disable-line no-unused-expressions
   async () => {
     if (thunkAPI.getState().status !== 'idle') {
       return;

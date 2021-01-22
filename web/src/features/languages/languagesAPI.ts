@@ -1,19 +1,6 @@
 import axios from 'axios';
 
-// export interface Language {
-//   [key: string]: unknown,
-//   id: number,
-//   language: string,
-//   status: string,
-//   error: string | undefined | undefined
-// }
-
-// interface GetLanguagesResult {
-//   languages:  Language[];
-// }
-
 export interface Language {
-  [key: string]: unknown,
   id: number,
   language: string,
   status: string,

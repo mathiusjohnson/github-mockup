@@ -9,25 +9,27 @@ const Repo = (props) => {
   };
 
   return (
-    <article className="border-2 border-black py-2 px-3" key={props.id}>
-      <h3>Name: {props.name}</h3>
-      {props.description !== null ? (
-        <p className="repo-content">
-          Description: {props.description.substring(0, 100)}
-        </p>
-      ) : (
-        <p>no description</p>
-      )}
-      {props.language !== undefined ? (
-        <p>Language:{props.language}</p>
-      ) : (
-        <p>No languages</p>
-      )}
-      <p>Forks: {props.forks_count}</p>
+    <article className="border-2 border-black py-4 px-3 flex flex-col justify-between " key={props.id}>
+      <div>
+        <h3 className="text-xl font-bold">{props.name}</h3>
+        {props.description !== null ? (
+          <p>
+            {props.description.substring(0, 100)}
+          </p>
+        ) : (
+          <p>no description</p>
+        )}
+        {props.language !== undefined ? (
+          <p>Language:{props.language}</p>
+        ) : (
+          <p>No languages</p>
+        )}
+        <p>Forks: {props.forks_count}</p>
+      </div>
       <Link
+        className="btn w-2/3 text-blue-700"
         onClick={() => setCookie(props.id)}
         to={`/repos/${props.id}`}
-        className="button muted-button"
         state={{ id: props.id }}
       >
         View Repo

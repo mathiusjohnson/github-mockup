@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Repo from './RepoItem';
 import { fetchRepos } from './repoSlice';
 import { connect } from 'react-redux';
-import LanguageList from '../buttons/fetchLanguages';
+import LanguageList from '../languages/fetchLanguages';
 import Filter from '../filters/Footer';
 
 function RepoList({ repos }) {

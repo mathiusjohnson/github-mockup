@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import FilterLink from './FilterLink';
 import { VisibilityFilters, addVisibilityFilter } from './filtersSlice';
-import { selectAllLanguages } from '../buttons/languagesSlice';
+import { selectAllLanguages } from '../languages/languagesSlice';
 const Filter = () => {
   const dispatch = useDispatch();
 

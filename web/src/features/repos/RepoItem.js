@@ -9,7 +9,7 @@ const Repo = (props) => {
   };
 
   return (
-    <article className="border-2 border-black py-4 px-3 flex flex-col justify-between " key={props.id}>
+    <article className="border-2 border-black rounded-xl hover:shadow-xl py-4 px-3 flex flex-col justify-between " key={props.id}>
       <div>
         <h3 className="text-xl font-bold">{props.name}</h3>
         {props.description !== null ? (
@@ -27,7 +27,7 @@ const Repo = (props) => {
         <p>Forks: {props.forks_count}</p>
       </div>
       <Link
-        className="btn w-2/3 text-blue-700"
+        className="btn btn-secondary w-2/3 text-blue-700"
         onClick={() => setCookie(props.id)}
         to={`/repos/${props.id}`}
         state={{ id: props.id }}

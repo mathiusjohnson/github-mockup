@@ -4,7 +4,30 @@
 
 @layer utilities {
   .btn  {
-      @apply font-extrabold tracking-widest cursor-pointer flex items-center justify-center border-2 border-solid border-black rounded-2xl uppercase px-4 py-2;
-      text-shadow: none;
+      @apply font-extrabold tracking-widest cursor-pointer flex items-center justify-center;
+  }
+  .btn-primary  {
+    @apply font-extrabold tracking-widest cursor-pointer flex items-center justify-center border-2 border-solid border-black rounded-2xl uppercase px-4 py-2;
+  }
+  .btn-primary:visited {
+    @apply bg-white text-black;
+  }
+  .btn-primary:hover {
+    @apply bg-black text-white;
+  }
+  .btn-primary:active {
+    @apply text-opacity-70 bg-none text-black;
+  }
+  .btn-secondary {
+    @apply font-bold tracking-widest cursor-pointer flex items-center justify-center border-2 border-solid border-blue-700 rounded-2xl uppercase px-2 py-2 text-xs;
+  }
+  .btn-secondary:visited {
+    @apply bg-none text-black;
+  }
+  .btn-secondary:hover {
+    @apply bg-blue-700 text-white;
+  }
+  .btn-secondary:active {
+    @apply text-opacity-70 bg-none text-blue-700;
   }
 }

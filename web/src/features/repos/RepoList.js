@@ -29,7 +29,10 @@ function RepoList({ repos }) {
   }
 
   content = repos;
-  const owner = repos[0].owner.login;
+  let owner
+  if (repos !== undefined) {
+    owner = repos[0].owner.login;
+  }
   return (
     <div>
       <h1 className="uppercase font-extrabold text-2xl text-center">{owner}'s Repos</h1>

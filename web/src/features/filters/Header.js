@@ -23,9 +23,11 @@ const Filter = () => {
   });
 
   return (
-    <div className="flex mt-3 items-center">
+    <div className="flex mt-3 items-center justify-center space-x-8">
       <span className="font-extrabold">Show: </span>
-      {renderedFilters}
+      <div className="flex justify-between">
+        {renderedFilters}
+      </div>
     </div>
   );
 };

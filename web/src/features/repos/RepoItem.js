@@ -10,7 +10,7 @@ const Repo = (props) => {
 
   return (
     <article className="border-2 border-black rounded-xl hover:shadow-xl py-4 px-3 flex flex-col justify-between " key={props.id}>
-      <div>
+      <div className="space-y-2">
         <h3 className="text-xl font-bold">{props.name}</h3>
         {props.description !== null ? (
           <p>
@@ -26,14 +26,16 @@ const Repo = (props) => {
         )}
         <p>Forks: {props.forks_count}</p>
       </div>
-      <Link
-        className="btn btn-secondary w-2/3 text-blue-700"
-        onClick={() => setCookie(props.id)}
-        to={`/repos/${props.id}`}
-        state={{ id: props.id }}
-      >
-        View Repo
-      </Link>
+      <div className="flex justify-center">
+        <Link
+          className="btn btn-secondary w-2/3 text-green-500 mt-2"
+          onClick={() => setCookie(props.id)}
+          to={`/repos/${props.id}`}
+          state={{ id: props.id }}
+        >
+          View Repo
+        </Link>
+      </div>
     </article>
   );
 };

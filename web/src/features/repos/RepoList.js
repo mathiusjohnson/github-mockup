@@ -29,18 +29,16 @@ function RepoList({ repos }) {
   }
 
   content = repos;
-  let owner
-  if (repos !== undefined) {
-    owner = repos[0].owner.login;
-  }
+  // let owner
+  // if (repos !== undefined) {
+  //   owner = repos[0].owner.login;
+  // }
   return (
     <div>
-      <h1 className="uppercase font-extrabold text-2xl text-center">{owner}'s Repos</h1>
-      <div>
-        <LanguageList />
-      </div>
+      {/* <h1 className="uppercase font-extrabold text-2xl text-center">{owner}'s Repos</h1> */}
+      <LanguageList />
       <Filter />
-      <ul className="grid grid-cols-4 gap-3 m-3">
+      <ul className="grid md:grid-cols-3 lg:grid-cols-4 gap-3 m-3">
         {content.map((repo) => (
           <Repo key={repo.id} {...repo} />
         ))}

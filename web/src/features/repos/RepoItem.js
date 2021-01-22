@@ -9,7 +9,7 @@ const Repo = (props) => {
   };
 
   return (
-    <article key={props.id}>
+    <article className="border-2 border-black py-2 px-3" key={props.id}>
       <h3>Name: {props.name}</h3>
       {props.description !== null ? (
         <p className="repo-content">

@@ -23,8 +23,8 @@ const Filter = () => {
   });
 
   return (
-    <div className="flex mt-3">
-      <span>Show: </span>
+    <div className="flex mt-3 items-center">
+      <span className="font-extrabold">Show: </span>
       {renderedFilters}
     </div>
   );

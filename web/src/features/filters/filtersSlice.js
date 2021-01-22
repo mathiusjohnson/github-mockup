@@ -50,12 +50,12 @@ export const { selectAll: selectAllLanguages } = languagesAdapter.getSelectors(
 );
 
 export const VisibilityFilters = {
-  SHOW_ALL: 'SHOW_ALL',
+  ALL: 'ALL',
 };
 
 const filtersSlice = createSlice({
   name: 'visibilityFilters',
-  initialState: VisibilityFilters.SHOW_ALL,
+  initialState: VisibilityFilters.ALL,
   reducers: {
     setVisibilityFilter(state, action) {
       return action.payload;

@@ -29,11 +29,15 @@ function RepoList({ repos }) {
   }
 
   content = repos;
+  const owner = repos[0].owner.login;
   return (
     <div>
-      <LanguageList />
+      <h1 className="uppercase font-extrabold text-2xl text-center">{owner}'s Repos</h1>
+      <div>
+        <LanguageList />
+      </div>
       <Filter />
-      <ul>
+      <ul className="grid grid-cols-3 gap-3 m-3">
         {content.map((repo) => (
           <Repo key={repo.id} {...repo} />
         ))}

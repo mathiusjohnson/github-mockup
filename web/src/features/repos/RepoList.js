@@ -4,7 +4,7 @@ import Repo from './RepoItem';
 import { fetchRepos } from './repoSlice';
 import { connect } from 'react-redux';
 import LanguageList from '../languages/fetchLanguages';
-import Filter from '../filters/Footer';
+import Filter from '../filters/Header';
 
 function RepoList({ repos }) {
   const dispatch = useDispatch();

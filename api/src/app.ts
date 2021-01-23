@@ -1,7 +1,7 @@
 import express, { Response, Request, NextFunction } from 'express';
 import cors from 'cors';
 import { repos } from './routes/repos';
-import { languages } from './routes/repos';
+import { languages } from './routes/languages';
 import { terrible } from './middleware/terrible';
 import { AppError } from './typings/AppError';
 

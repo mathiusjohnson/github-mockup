@@ -34,7 +34,7 @@ function SinglePostPage({ repos }) {
   const repoName = repo.name;
 
   return (
-    <section>
+    <section className="border-2 border-black  m-2 py-2 px-3 rounded-xl">
       <article className="post">
         <CommitList repoName={repoName} />
 
@@ -44,7 +44,9 @@ function SinglePostPage({ repos }) {
         <ReactMarkdown source={readMe} />
         <br />
         <br />
-        <Link to="/repos">Back</Link>
+        <div className="flex justify-center">
+          <Link className="btn btn-tertiary w-1/6" to="/repos">Back</Link>
+        </div>
       </article>
     </section>
   );

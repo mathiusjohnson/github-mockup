@@ -30,4 +30,16 @@
   .btn-secondary:active {
     @apply text-opacity-70 bg-none text-green-500;
   }
+  .btn-tertiary {
+    @apply font-bold tracking-widest cursor-pointer flex items-center justify-center border-2 border-solid border-red-500 rounded-2xl uppercase px-2 py-2 text-xs;
+  }
+  .btn-tertiary:visited {
+    @apply bg-none text-red-500;
+  }
+  .btn-tertiary:hover {
+    @apply bg-red-500 text-white;
+  }
+  .btn-tertiary:active {
+    @apply text-opacity-70 bg-none text-red-500;
+  }
 }

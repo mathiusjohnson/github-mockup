@@ -31,9 +31,8 @@ const CommitList = (props) => {
           const startTimeDate = new Date(startTimeISOString).toDateString();
 
           return (
-            <li key={index}>
-              <p>Author: {sortedCommits[commit].commit.author.name}</p>
-              <p>Committed on: {startTimeDate}</p>
+            <li className="bg-gray-200 rounded p-4 space-y-2" key={index}>
+              <p className="text-xl">Last updated by {sortedCommits[commit].commit.author.name} on {startTimeDate}</p>
               <p>Commit message: {sortedCommits[commit].commit.message}</p>
             </li>
           );
@@ -43,7 +42,6 @@ const CommitList = (props) => {
 
   return (
     <div>
-      <h2>Most recent commit</h2>
       <ol>{renderedCommits}</ol>
     </div>
   );

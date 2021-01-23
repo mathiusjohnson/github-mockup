@@ -35,18 +35,17 @@ function SinglePostPage({ repos }) {
 
   return (
     <section className="border-2 border-black  m-2 py-2 px-3 rounded-xl">
-      <article className="post">
+      <article className="post space-y-4">
+        <h2 className="text-2xl font-extrabold text-center">{repoName}</h2>
+        <h3 className="text-xl uppercase text-center">readme</h3>
+        <ReactMarkdown source={readMe} />
+
         <CommitList repoName={repoName} />
 
-        <h2>{repo.title}</h2>
-
-        <br />
-        <ReactMarkdown source={readMe} />
-        <br />
-        <br />
         <div className="flex justify-center">
           <Link className="btn btn-tertiary w-1/6" to="/repos">Back</Link>
         </div>
+
       </article>
     </section>
   );

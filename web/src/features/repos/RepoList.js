@@ -38,7 +38,7 @@ function RepoList({ repos }) {
       {/* <h1 className="uppercase font-extrabold text-2xl text-center">{owner}'s Repos</h1> */}
       <LanguageList />
       <Filter />
-      <ul className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 m-3">
+      <ul className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 auto-rows-fr	 m-3">
         {content.map((repo) => (
           <Repo key={repo.id} {...repo} />
         ))}

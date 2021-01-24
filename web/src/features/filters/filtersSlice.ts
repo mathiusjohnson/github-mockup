@@ -2,7 +2,7 @@ import {
   createSlice,
 } from '@reduxjs/toolkit'
 
-interface IVisibilityFilters { SHOW_ALL: string; }
+export interface IVisibilityFilters { SHOW_ALL: string; }
 
 export const VisibilityFilters: IVisibilityFilters = {
   SHOW_ALL: 'SHOW_ALL'

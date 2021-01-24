@@ -12,7 +12,7 @@ interface languagesState {
   languages: Languages;
 }
 
-interface Languages {
+export interface Languages {
     [key: string]: Language,
 }
 

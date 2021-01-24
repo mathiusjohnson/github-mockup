@@ -1,16 +1,16 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
+import { VisibilityFilters, addVisibilityFilter, IVisibilityFilters } from './filtersSlice';
 import FilterLink from './FilterLink'
-import { VisibilityFilters, addVisibilityFilter } from './filtersSlice'
-import { selectAllLanguages } from '../languages/languagesSlice'
+import { RootState } from '../../reducers/index';
+import React from 'react';
 
 const Filter = () => {
   const dispatch = useDispatch()
 
   // const languages = useSelector(selectAllLanguages)
-  const languages = useSelector(state => state.languages.languages)
+  const languages = useSelector((state: RootState) => state.languages.languages)
 
-  const error = useSelector(state => state.languages.error)
+  const error = useSelector((state: RootState) => state.languages.error)
 
   for (const language in languages) {
     if (Object.hasOwnProperty.call(languages, language)) {
@@ -25,9 +25,9 @@ const Filter = () => {
   console.log("languages in footer: ", languages);
   const filterKeys = Object.keys(VisibilityFilters)
 
-  const renderedFilters = filterKeys.map((filter, index) => {
+  const renderedFilters = filterKeys.map((filter: any, index: number) => {
     return (
-      <FilterLink key={index} filter={VisibilityFilters[filter]}>
+      <FilterLink key={index} filter={VisibilityFilters[filter as keyof IVisibilityFilters]}>
         {filter}
       </FilterLink>
     )

@@ -9,6 +9,7 @@ interface languagesState {
   pending: string | null;
   fulfilled: string | null;
   rejected: string | null
+  languages: Languages;
 }
 
 interface Languages {
@@ -27,7 +28,7 @@ const initialState: languagesState = languagesAdapter.getInitialState({
   pending: null,
   fulfilled: null,
   rejected: null,
-}) as languagesState;
+}) as unknown as languagesState;
 
 /* eslint-disable */
 
@@ -50,7 +51,7 @@ export const fetchLanguages = createAsyncThunk<
   console.log("languages: ", response.languages);
 
   return response.languages;
-})();
+});
 /* eslint-disable */
 
 export const languagesSlice = createSlice({
@@ -82,7 +83,7 @@ export const languagesSlice = createSlice({
 export default languagesSlice.reducer
 
 export const { selectAll: selectAllLanguages } = languagesAdapter.getSelectors(
-  state => {
+  (state: any) => {
     return state.languages
   }
 )

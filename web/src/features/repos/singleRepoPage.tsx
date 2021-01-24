@@ -5,8 +5,9 @@ import CommitList from './components/CommitList'
 import { loadState } from '../../helpers/localStorage'
 import axios from 'axios'
 import ReactMarkdown from 'react-markdown'
+import {RootState} from '../../reducers'
 
-function SinglePostPage() {
+function SingleRepoPage() {
   const [readMe, setReadMe] = useState({})
 
   const repo = loadState()
@@ -31,6 +32,8 @@ function SinglePostPage() {
     )
   }
 
+  console.log("type: ", typeof readMe);
+
   const repoName = repo.name
 
   return (
@@ -41,7 +44,10 @@ function SinglePostPage() {
         <h2>{repo.title}</h2>
 
         <br />
-        <ReactMarkdown source={readMe} />
+        { typeof readMe === 'string' ?
+          <ReactMarkdown source={readMe} />
+          : ""
+        }
         <br />
         <br />
         <Link to="/repos">Back</Link>
@@ -50,8 +56,8 @@ function SinglePostPage() {
   )
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: RootState) => ({
   repos: state.repos
 })
 
-export default connect(mapStateToProps)(SinglePostPage)
+export default connect(mapStateToProps)(SingleRepoPage)

@@ -1,18 +1,19 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Repo from './RepoItem';
-import { fetchRepos } from './repoSlice';
+import { fetchRepos, iRepos, iRepo } from './repoSlice';
 import { connect } from 'react-redux';
 import LanguageList from '../languages/fetchLanguages';
 import Filter from '../filters/Footer';
+import { RootState } from '../../reducers/index';
 
-function RepoList({ repos }) {
+function RepoList({ repos }: { repos: iRepos}) {
   const dispatch = useDispatch()
 
   let content
 
-  const repoStatus = useSelector(state => state.repos.status)
-  const error = useSelector(state => state.repos.error)
+  const repoStatus = useSelector((state: RootState) => state.repos.status)
+  const error = useSelector((state: RootState) => state.repos.error)
 
   useEffect(() => {
     if (repoStatus === 'idle') {
@@ -29,12 +30,16 @@ function RepoList({ repos }) {
   }
 
   content = repos
+  console.log("content: ", content);
+  if (content.length === 0) {
+    return null
+  }
   return (
     <div>
       <LanguageList />
       <Filter />
       <ul>
-        {content.map(repo => (
+        {content.map((repo: iRepo) => (
           <Repo key={repo.id} {...repo} />
         ))}
       </ul>

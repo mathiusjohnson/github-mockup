@@ -7,26 +7,30 @@ import {
 import axios from 'axios'
 
 interface repoState {
-  entities: Repos;
+  entities: iRepos;
   ids: Array<number> [];
   status: string | undefined;
   error?: null;
   pending: string | null;
   fulfilled: string | null;
   rejected: null;
-  repos: Repos;
+  repos: iRepos;
   currentRepo: {}
 }
 
-interface Repos {
+export interface iRepos {
   [key: string]: iRepo,
+  length: any,
+  map: any
 }
 
-interface iRepo {
+export interface iRepo {
   id: number,
   name: string,
   description: string,
   created_at: string,
+  language: string,
+  forks_count: number
   // ...
 }
 
@@ -49,7 +53,7 @@ const initialState = reposAdapter.getInitialState({
 
 export const fetchRepos = createAsyncThunk<
 // Return type of the payload creator
-Repos,
+iRepos,
 // pending: string | null,
 
 // First argument to the payload creator (provide void if there isn't one)

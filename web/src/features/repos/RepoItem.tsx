@@ -2,8 +2,17 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { saveState } from '../../helpers/localStorage'
 
-const Repo = props => {
-  const setCookie = id => {
+interface iProps {
+  id: number,
+  name: string,
+  description: string,
+  language: string,
+  forks_count: number
+}
+
+const Repo = (props: iProps): JSX.Element => {
+
+  const setCookie = () => {
     // console.log('id in cookie fn:', id)
     saveState(props)
   }
@@ -25,10 +34,9 @@ const Repo = props => {
       )}
       <p>Forks: {props.forks_count}</p>
       <Link
-        onClick={() => setCookie(props.id)}
+        onClick={() => setCookie()}
         to={`/repos/${props.id}`}
         className="button muted-button"
-        state={{ id: props.id }}
       >
         View Repo
       </Link>

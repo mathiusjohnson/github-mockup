@@ -18,7 +18,7 @@ export async function getLanguages(): Promise<GetLanguagesResult> {
 
   const languagesResponse = await axios.get<{data: Language}>(url);
 
-  console.log("data in api.ts: ", languagesResponse.data);
+  // console.log("data in api.ts: ", languagesResponse.data);
   return {
     languages: languagesResponse.data,
   };

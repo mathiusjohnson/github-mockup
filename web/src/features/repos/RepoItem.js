@@ -4,7 +4,7 @@ import { saveState } from '../../helpers/localStorage'
 
 const Repo = props => {
   const setCookie = id => {
-    console.log('id in cookie fn:', id)
+    // console.log('id in cookie fn:', id)
     saveState(props)
   }
 

@@ -7,15 +7,24 @@ import { selectAllLanguages } from '../languages/languagesSlice'
 const Filter = () => {
   const dispatch = useDispatch()
 
-  const languages = useSelector(selectAllLanguages)
+  // const languages = useSelector(selectAllLanguages)
+  const languages = useSelector(state => state.languages.languages)
 
-  languages.forEach(language => {
-    dispatch(addVisibilityFilter(language))
-  })
+  const error = useSelector(state => state.languages.error)
 
+  for (const language in languages) {
+    if (Object.hasOwnProperty.call(languages, language)) {
+      const languageElement = languages[language];
+      dispatch(addVisibilityFilter(languageElement))
+
+    }
+  }
+  // languages.forEach(language => {
+  //   dispatch(addVisibilityFilter(language))
+  // })
+  console.log("languages in footer: ", languages);
   const filterKeys = Object.keys(VisibilityFilters)
 
-  console.log(VisibilityFilters);
   const renderedFilters = filterKeys.map((filter, index) => {
     return (
       <FilterLink key={index} filter={VisibilityFilters[filter]}>

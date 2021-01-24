@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchLanguages, selectAllLanguages } from './languagesSlice'
 // import Button from './Button';
 
-export default function LanguageList({  }) {
+export default function LanguageList() {
   const dispatch = useDispatch()
   const languages = useSelector(selectAllLanguages)
 
@@ -25,6 +25,6 @@ export default function LanguageList({  }) {
   } else if (languageStatus === 'error') {
     content = <div>{error}</div>
   }
-  console.log("fetching: ", content);
+  // console.log("fetching: ", content);
   return <div>{content}</div>
 }

@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchLanguages } from './languagesSlice'
+import { fetchLanguages, selectAllLanguages } from './languagesSlice'
 // import Button from './Button';
 
-export default function LanguageList({ languages }) {
+export default function LanguageList({  }) {
   const dispatch = useDispatch()
+  const languages = useSelector(selectAllLanguages)
 
   let content
 
@@ -24,6 +25,6 @@ export default function LanguageList({ languages }) {
   } else if (languageStatus === 'error') {
     content = <div>{error}</div>
   }
-
+  console.log("fetching: ", content);
   return <div>{content}</div>
 }

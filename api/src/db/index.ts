@@ -15,7 +15,6 @@ export const getAPI = () => {
 
     .then(({ data } : {data: any}) => {
       data = data.filter((repo: {fork: boolean;}) => repo.fork === false)
-      console.log("data in index: ", data[0].id);
       return data;
     });
 

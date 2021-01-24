@@ -93,7 +93,7 @@ const reposSlice = createSlice({
   }
 })
 
-export default reposSlice.reducer
+export default reposSlice.reducer;
 
 export const {
   selectAll: selectAllRepos,
@@ -107,3 +107,4 @@ export const {
 //     return state
 //   }
 // ])
+export {}

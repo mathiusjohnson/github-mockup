@@ -5,9 +5,6 @@ import { Octokit } from '@octokit/rest'
 
 export const repos = Router();
 
-console.log(typeof getAPI);
-
-console.log("this repo file works");
 repos.get('/', async (req, res) => {
   res.header('Cache-Control', 'no-store');
 

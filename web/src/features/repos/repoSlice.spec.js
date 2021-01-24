@@ -6,7 +6,10 @@ describe('repos reducer', () => {
       currentRepo: {},
       entities: {},
       error: null,
+      fulfilled: null,
       ids: [],
+      pending: null,
+      rejected: null,
       status: 'idle'
     })
   })

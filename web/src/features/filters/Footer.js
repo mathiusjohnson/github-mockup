@@ -15,6 +15,7 @@ const Filter = () => {
 
   const filterKeys = Object.keys(VisibilityFilters)
 
+  console.log(VisibilityFilters);
   const renderedFilters = filterKeys.map((filter, index) => {
     return (
       <FilterLink key={index} filter={VisibilityFilters[filter]}>

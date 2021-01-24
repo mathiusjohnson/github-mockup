@@ -5,7 +5,10 @@ describe('languages reducer', () => {
     expect(languages(undefined, {})).toEqual({
       entities: {},
       error: null,
+      fulfilled: null,
       ids: [],
+      pending: null,
+      rejected: null,
       status: 'idle'
     })
   })

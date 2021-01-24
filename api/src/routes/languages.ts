@@ -1,6 +1,11 @@
 import { Router } from 'express';
 const { Octokit } = require("@octokit/rest");
 
+
+interface Languages {
+
+}
+
 export const languages = Router();
 
 languages.get('/', async (req, res) => {
@@ -19,7 +24,7 @@ languages.get('/', async (req, res) => {
   })
   .then(({ data }: {data: any}) => {
 
-    let languages = {};
+    let languages: any = {};
     let id = 0;
     for (const key in data) {
       if (Object.hasOwnProperty.call(data, key)) {

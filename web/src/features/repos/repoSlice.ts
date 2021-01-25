@@ -15,7 +15,7 @@ interface repoState {
   fulfilled: string | null;
   rejected: null;
   repos: iRepos;
-  currentRepo: {}
+  // currentRepo: {}
 }
 
 export interface iRepos {

@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const loadState = () => {
   try {
     const serializedState = localStorage.getItem('state')
@@ -10,7 +11,8 @@ export const loadState = () => {
   }
 }
 
-export const saveState = (state: object) => {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const saveState = (state: unknown) => {
   try {
     const serializedState = JSON.stringify(state)
     localStorage.setItem('state', serializedState)

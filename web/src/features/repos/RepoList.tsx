@@ -37,7 +37,7 @@ function RepoList({ repos }: { repos: iRepos}) {
     <div>
       <LanguageList />
       <Filter />
-      <ul>
+      <ul className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 auto-rows-fr	 m-3">
         {content.map((repo: iRepo) => (
           <Repo key={repo.id} {...repo} />
         ))}

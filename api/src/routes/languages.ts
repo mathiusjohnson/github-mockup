@@ -9,7 +9,6 @@ interface Languages {
 export const languages = Router();
 
 languages.get('/', async (req, res) => {
-  res.header('Cache-Control', 'no-store');
 
   const { Octokit } = require("@octokit/rest");
 

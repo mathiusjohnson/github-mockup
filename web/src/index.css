@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .btn  {
+      @apply font-extrabold tracking-widest cursor-pointer flex items-center justify-center;
+  }
+  .btn-primary  {
+    @apply font-extrabold tracking-widest cursor-pointer flex items-center justify-center border-2 border-solid border-black rounded-2xl uppercase px-4 py-1 mx-2;
+  }
+  .btn-primary:visited {
+    @apply bg-white text-black;
+  }
+  .btn-primary:hover {
+    @apply bg-black text-white;
+  }
+  .btn-primary:active {
+    @apply text-opacity-70 bg-none text-black;
+  }
+  .btn-secondary {
+    @apply font-bold tracking-widest cursor-pointer flex items-center justify-center border-2 border-solid border-green-500 rounded-2xl uppercase px-2 py-2 text-xs;
+  }
+  .btn-secondary:visited {
+    @apply bg-none text-green-500;
+  }
+  .btn-secondary:hover {
+    @apply bg-green-500 text-white;
+  }
+  .btn-secondary:active {
+    @apply text-opacity-70 bg-none text-green-500;
+  }
+  .btn-tertiary {
+    @apply font-bold tracking-widest cursor-pointer flex items-center justify-center border-2 border-solid border-red-500 rounded-2xl uppercase px-2 py-2 text-xs;
+  }
+  .btn-tertiary:visited {
+    @apply bg-none text-red-500;
+  }
+  .btn-tertiary:hover {
+    @apply bg-red-500 text-white;
+  }
+  .btn-tertiary:active {
+    @apply text-opacity-70 bg-none text-red-500;
+  }
+}

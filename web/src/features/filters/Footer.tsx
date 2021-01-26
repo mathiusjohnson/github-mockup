@@ -33,9 +33,11 @@ const Filter = () => {
   })
 
   return (
-    <div>
-      <span>Show: </span>
-      {renderedFilters}
+    <div className="flex mt-3 items-center justify-center space-x-8">
+      <span className="font-extrabold">Show: </span>
+      <div className="flex justify-between">
+        {renderedFilters}
+      </div>
     </div>
   )
 }

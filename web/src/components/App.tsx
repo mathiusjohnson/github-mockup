@@ -9,6 +9,7 @@ import {
 import SingleRepoPage from '../features/repos/singleRepoPage'
 import { VisibleRepoList } from '../features/repos/VisibleRepoList'
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function App() {
   return (
     <Router>

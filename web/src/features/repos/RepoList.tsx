@@ -30,7 +30,6 @@ function RepoList({ repos }: { repos: iRepos}) {
   }
 
   content = repos
-  console.log("content: ", content);
   if (content.length === 0) {
     return null
   }

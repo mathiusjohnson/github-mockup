@@ -22,7 +22,6 @@ const Filter = () => {
   // languages.forEach(language => {
   //   dispatch(addVisibilityFilter(language))
   // })
-  console.log("languages in footer: ", languages);
   const filterKeys = Object.keys(VisibilityFilters)
 
   const renderedFilters = filterKeys.map((filter: any, index: number) => {

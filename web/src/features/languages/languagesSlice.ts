@@ -48,7 +48,6 @@ export const fetchLanguages = createAsyncThunk<
   };
 
   const response = await getLanguages();
-  // console.log("languages in slice: ", response.languages);
 
   return response.languages;
 });

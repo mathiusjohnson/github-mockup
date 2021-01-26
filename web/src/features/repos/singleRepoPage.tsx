@@ -32,8 +32,6 @@ function SingleRepoPage() {
     )
   }
 
-  console.log("type: ", typeof readMe);
-
   const repoName = repo.name
 
   return (

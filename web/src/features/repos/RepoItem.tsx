@@ -13,7 +13,6 @@ interface iProps {
 const Repo = (props: iProps): JSX.Element => {
 
   const setCookie = () => {
-    // console.log('id in cookie fn:', id)
     saveState(props)
   }
 

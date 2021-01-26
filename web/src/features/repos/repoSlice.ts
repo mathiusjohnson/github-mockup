@@ -67,7 +67,6 @@ void,
   };
 
     const response = await axios.get(url)
-    // console.log("repos in thunk: ", response.data);
 
     return response.data
   }

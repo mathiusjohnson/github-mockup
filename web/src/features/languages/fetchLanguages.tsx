@@ -25,6 +25,5 @@ export default function LanguageList() {
   } else if (languageStatus === 'rejected') {
     content = <div>{error}</div>
   }
-  // console.log("fetching: ", content);
   return <div>{content}</div>
 }

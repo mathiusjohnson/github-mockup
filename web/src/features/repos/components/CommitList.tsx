@@ -1,87 +1,73 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-interface iProps {
-  repoName: string
+interface IAuthor {
+  name: string;
+  email: string;
+  date: number;
 }
 
-interface iCommits {
-  [key: string]: iCommit,
-
+interface ICommitData {
+  author: IAuthor;
+  message: string;
 }
 
-interface iCommit {
-  sha: string,
-  commit: iCommitData
+export interface ICommit {
+  sha: string;
+  commit: ICommitData;
 }
 
-interface iCommitData {
-  author: iAuthor
-  message: string
+export interface IProps {
+  repoName: string;
 }
 
-interface iAuthor {
-  name: string,
-  email: string,
-  date: number
-}
+
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const CommitList = (props: iProps) => {
-  const repoName = props.repoName
-  const [commitList, setCommitList] = useState<iCommits | []>([])
+const CommitList = (props: IProps) => {
+  const repoName = props.repoName;
+  // your request does not return ICommits
+  // it returns a ICommit[] -> Icommit array
+  const [commitList, setCommitList] = useState<ICommit[]>([]);
 
   useEffect(() => {
     axios
       .get(`https://api.github.com/repos/silverorange/${repoName}/commits`)
-      .then(res => {
-        setCommitList(res.data)
-      })
-  }, [repoName])
-
-  console.log(commitList);
-
-  let sortedCommits: iCommits;
-  let commitKeys: string[] | "" = [];
-console.log("commitList: ", typeof commitList);
-
-  if (commitList && commitList.length > 0) {
+      .then((res) => {
+        setCommitList(res.data);
+      });
+  }, [repoName]);
 
 
-    commitKeys =
-    commitList !== undefined ? Object.keys(commitList) : ''
-  }
+  const dateToMilis = (commitWrapper: ICommit) =>
+    new Date(commitWrapper.commit.author.date).getTime();
 
+  // console.log(commitList[commitKeys[0] as keyof ICommits]);
 
-  const renderedCommits = commitKeys
-    ? commitKeys.map((commit: string, index: number) => {
-        if (index !== 0) {
-          const startTimeISOString = sortedCommits[commit].commit.author.date
-          const startTimeDate = new Date(startTimeISOString).toDateString()
-          console.log("not the latest commit: ", startTimeDate);
-          return null
-        } else {
-          const startTimeISOString = sortedCommits[commit].commit.author.date
-          const startTimeDate = new Date(startTimeISOString).toDateString()
-          console.log("latest commit: ", startTimeDate);
+  const renderedCommits = commitList.map((commitWrapper, index) => {
+    // this condition would cause only the first
+    // commit to render is this intentional
+    if (index !== 0) {
+      return null;
+    } else {
+      const startTimeISOString = commitWrapper.commit.author.date;
+      const startTimeDate = new Date(startTimeISOString).toDateString();
 
-
-          return (
-            <li key={index}>
-              <p>Author: {sortedCommits[commit].commit.author.name}</p>
-              <p>Committed on: {startTimeDate}</p>
-              <p>Commit message: {sortedCommits[commit].commit.message}</p>
-            </li>
-          )
-        }
-      })
-    : ''
+      return (
+        <li key={index}>
+          <p>Author: {commitWrapper.commit.author.name}</p>
+          <p>Committed on: {startTimeDate}</p>
+          <p>Commit message: {commitWrapper.commit.message}</p>
+        </li>
+      );
+    }
+  });
 
   return (
     <div>
       <h2>Most recent commit</h2>
       <ol>{renderedCommits}</ol>
     </div>
-  )
-}
+  );
+};
 
-export default CommitList
+export default CommitList;

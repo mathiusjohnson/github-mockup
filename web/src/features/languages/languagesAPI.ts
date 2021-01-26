@@ -14,7 +14,7 @@ export interface GetLanguagesResult {
 }
 
 export async function getLanguages(): Promise<GetLanguagesResult> {
-  const url = 'http://localhost:4000/languages'
+  const url = 'http://localhost:4000/repos/languages'
 
   const languagesResponse = await axios.get<{data: Language}>(url);
 

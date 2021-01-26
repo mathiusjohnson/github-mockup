@@ -1,7 +1,7 @@
 import express, { Response, Request, NextFunction } from 'express';
 import cors from 'cors';
-import { repos } from './routes/repos';
-import { languages } from './routes/languages';
+import { repos, languages } from './routes/repos';
+// import { languages } from './routes/repos';
 import { terrible } from './middleware/terrible';
 import { AppError } from './typings/AppError';
 
@@ -15,7 +15,7 @@ export const app = express();
 
 // Routes. Note these will fail about 25% due to "terrible" middleware.
 app.use('/repos', cors(corsOptions), repos);
-app.use('/languages', terrible(), cors(corsOptions), languages);
+app.use('/repos/languages', terrible(), cors(corsOptions), languages);
 
 // error handling middleware should be loaded after the loading the routes
 app.use(

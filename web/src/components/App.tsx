@@ -1,24 +1,27 @@
-import React from 'react';
+import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
-} from 'react-router-dom';
+  Redirect
+} from 'react-router-dom'
 
-import ReposList from './features/repos/reposList';
-import SingleRepoPage from './features/repos/singleRepoPage';
+import SingleRepoPage from '../features/repos/singleRepoPage'
+import { VisibleRepoList } from '../features/repos/VisibleRepoList'
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function App() {
   return (
     <Router>
       <div className="App">
+        {/* <CommitList /> */}
         <Switch>
           <Route
             exact={true}
             path="/"
             render={() => (
               <React.Fragment>
-                <ReposList />
+                <VisibleRepoList />
               </React.Fragment>
             )}
           />
@@ -31,7 +34,7 @@ function App() {
         </Switch>
       </div>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

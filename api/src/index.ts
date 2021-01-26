@@ -1,7 +1,10 @@
 import { debug as createDebug } from 'debug';
 import { createServer } from 'http';
 import { config } from './config';
+import ENV from './environment';
 import { app } from './app';
+
+require('dotenv').config();
 
 const debug = createDebug('api');
 

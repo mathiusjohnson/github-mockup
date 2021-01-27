@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Repo from './RepoItem';
-import { fetchRepos, iRepos, iRepo } from './repoSlice';
+import { fetchRepos, IRepos, IRepo } from './repoSlice';
 import { connect } from 'react-redux';
 import LanguageList from '../languages/fetchLanguages';
 import Filter from '../filters/Footer';
 import { RootState } from '../../reducers/index';
 
-function RepoList({ repos }: { repos: iRepos}) {
+function RepoList({ repos }: { repos: IRepos}) {
   const dispatch = useDispatch()
 
   let content
@@ -38,7 +38,7 @@ function RepoList({ repos }: { repos: iRepos}) {
       <LanguageList />
       <Filter />
       <ul className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 auto-rows-fr	 m-3">
-        {content.map((repo: iRepo) => (
+        {content.map((repo: IRepo) => (
           <Repo key={repo.id} {...repo} />
         ))}
       </ul>

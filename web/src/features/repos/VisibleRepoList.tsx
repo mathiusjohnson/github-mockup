@@ -3,21 +3,21 @@ import { createSelector } from '@reduxjs/toolkit'
 import RepoList from './RepoList'
 import { VisibilityFilters } from '../filters/filtersSlice'
 import {RootState} from '../../reducers'
-import {iRepo} from './repoSlice'
+import {IRepo} from './repoSlice'
 
 const selectRepos = (state: RootState) => state
 const selectFilter = (state: RootState) => state.visibilityFilter
 
-interface iRepoArr {
+interface IRepoArr {
   filter: any
   push: any
-  [key: number]: iRepo
+  [key: number]: IRepo
 }
 const selectVisibleRepos = createSelector(
   [selectRepos, selectFilter],
   (repos, filter) => {
     const repoKeys = Object.keys(repos.repos.entities)
-    const repoArr: iRepoArr = []
+    const repoArr: IRepoArr = []
     repoKeys.forEach(key => {
       repoArr.push(repos.repos.entities[key])
     })
@@ -28,7 +28,7 @@ const selectVisibleRepos = createSelector(
         return repoArr
       }
       if (filter === filteredLang) {
-        return repoArr.filter((repo: iRepo) => repo.language === filteredLang)
+        return repoArr.filter((repo: IRepo) => repo.language === filteredLang)
       }
     }
     throw new Error('Unknown filter: ' + filter)

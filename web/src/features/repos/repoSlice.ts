@@ -7,53 +7,89 @@ import {
 import axios from 'axios'
 
 interface repoState {
-  entities: iRepos;
+  entities: IRepos;
   ids: Array<number> [];
   status: string | undefined;
   error?: null;
   pending: string | null;
   fulfilled: string | null;
   rejected: null;
-  repos: iRepos;
-  // currentRepo: {}
 }
 
-export interface iRepos {
-  [key: string]: iRepo,
+export interface IRepos {
+  [key: string]: IRepo,
   length: any,
   map: any
 }
 
-export interface iRepo {
-  id: number,
-  name: string,
-  description: string,
-  created_at: string,
-  language: string,
-  forks_count: number
-  // ...
+export interface User {
+  login: string;
+  id: number;
+  avatar_url: string;
+  gravatar_id: string;
+  url: string;
+  html_url: string;
+  followers_url: string;
+  following_url: string;
+  gists_url: string;
+  starred_url: string;
+  subscriptions_url: string;
+  organizations_url: string;
+  repos_url: string;
+  events_url: string;
+  received_events_url: string;
+  type: string;
+  site_admin: boolean;
 }
+
+export interface IRepo {
+  id: number;
+  name: string;
+  full_name: string;
+  owner: User;
+  private: boolean;
+  html_url: string;
+  description: string;
+  fork: boolean;
+  url: string;
+  created_at: string;
+  updated_at: string;
+  pushed_at: string;
+  git_url: string;
+  ssh_url: string;
+  clone_url: string;
+  svn_url: string;
+  homepage: string;
+  size: number;
+  stargazers_count: number;
+  watchers_count: number;
+  language: string;
+  forks_count: number;
+  forks: number;
+}
+
 
 const url = 'http://localhost:4000/repos'
 
 const reposAdapter = createEntityAdapter({
-  sortComparer: (repoA: iRepo, repoB: iRepo) => repoB.created_at.localeCompare(repoA.created_at)
+  sortComparer: (repoA: IRepo, repoB: IRepo) => repoB.created_at.localeCompare(repoA.created_at)
 })
 
 const initialState = reposAdapter.getInitialState({
+  entities: {} as IRepos,
   status: 'idle',
   error: null,
   pending: null,
   fulfilled: null,
   rejected: null,
   currentRepo: {}
-}) as unknown as repoState
+})
 
 /* eslint-disable */
 
 export const fetchRepos = createAsyncThunk<
 // Return type of the payload creator
-iRepos,
+IRepos,
 // pending: string | null,
 
 // First argument to the payload creator (provide void if there isn't one)

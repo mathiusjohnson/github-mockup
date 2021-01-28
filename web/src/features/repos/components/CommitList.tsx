@@ -31,7 +31,7 @@ const CommitList = (props: IProps) => {
 
   useEffect(() => {
     axios
-      .get(`https://api.github.com/repos/silverorange/${repoName}/commits`)
+      .get(`https://api.github.com/repos/octokit/${repoName}/commits`)
       .then((res) => {
         setCommitList(res.data);
       });

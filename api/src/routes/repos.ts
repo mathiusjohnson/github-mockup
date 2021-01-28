@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import yourJson from '../../data/repos.json';
 import { Octokit } from '@octokit/rest'
 export const repos = Router();
 
@@ -10,16 +9,11 @@ const octokit = new Octokit({
 
 octokit.repos
 .listForOrg({
-  org: "silverorange",
+  org: "octokit",
   type: "public",
 })
 .then(({ data }: {data:any}) => {
   data = data.filter((repo: {fork: boolean;}) => repo.fork === false)
-  for (const repository of yourJson) {
-    if (repository.fork === false) {
-      data.push(repository);
-    }
-  }
   apiDATA = data;
 });
 
